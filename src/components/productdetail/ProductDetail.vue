@@ -19,12 +19,12 @@
           </div>
           <div class="two">
             <span class="keys">规格</span>
-            <ul @click="checknorms(e)">
+            <ul>
               <li
                 v-for="item in productitems.norms"
                 :key="item.id"
-                data-id="item.id"
-                :class="{ active: !isTrue }"
+                :id="item.id"
+                @click="checknorms(item.id)"
               >
                 {{ item.normsvalue }}
               </li>
@@ -119,32 +119,35 @@ export default {
         {
           id: 2,
           normsvalue: "粉",
-          imgid: '../../../static/img/testImg/detail1.jpg'
+          imgid: '../../../static/img/testImg/amani.jpg'
         }
         ]
       }
     }
   },
+  mounted: {
+
+  },
+  created: {
+    // $route.path = '/detailpage',
+  },
   methods: {
-    checknorms(e) {
+    checknorms(id) {
       var e = e || window.event;
       var target = e.target || e.srcElement;
       console.log(target)
       console.log(target.id)
-      if (target) {
-
-        this.isTrue = !this.isTrue
-
-        //    this.imgurl = c.imgid
+      let c = this.productitems.norms.find(function (item) {
+        return item.id == id
+      })
+      console.log(c.imgid)
+      if (c) {
+        $('.two li').removeClass('active')
+        $('.two li').eq(id - 1).addClass('active')
+        $('.detail-leftpic img').attr('src', c.imgid)
       }
-      //   let c = this.productitems.norms.find(function (item, index) {
-      //     return (index + 1) == id
-      //   })
+      //  :class="{ active: !isTrue }"
 
-      //   if (c) {
-      //     this.isTrue = !this.isTrue
-      //     this.imgurl = c.imgid
-      //   }
     }
   },
   components: {

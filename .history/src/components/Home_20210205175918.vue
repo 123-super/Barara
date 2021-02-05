@@ -11,11 +11,7 @@
                   >{{ item.name }}<i class="iconfont">&#xe633;</i></a
                 >
                 <div class="banrightlist clearfix">
-                  <ul>
-                    <li v-for="it in getPC(item.id)" :key="it.id">
-                      {{ it.name }}
-                    </li>
-                  </ul>
+                  <h4>{{ item.name }}</h4>
                 </div>
               </li>
             </ul>
@@ -176,12 +172,11 @@
 </template>
 <script>
 import { lunbo } from '../../static/js/firstpagelunbo'
-import { getCategory, getProductByCid } from '../api/category'
+import { getCategory } from '../api/category'
 export default {
   data() {
     return {
       listdata: [],
-      productlist: [],
     }
   },
   components: {
@@ -197,29 +192,21 @@ export default {
   methods: {
     getCg() {
       getCategory().then((res) => {
-        if (res.status == 200) {
+        if (res.data.status == 200) {
           this.listdata = res.data
         }
-        else {
-          Toast("加载失败");
-        }
       })
-    },
-    getPC(cid) {
-      return getProductByCid(cid).then((res) => {
-        console.log(res.status)
-        if (res.status == 200) {
-          console.log(res.data)
-          var list = res.data
-        }
-        else {
-          Toast("加载失败");
-        }
-        return list
-      })
-
     }
-
+    //   listUser({ pageNo: this.currentPage, pageSize: this.pageSize }).then((result) => {
+    //     console.log(result)
+    //     if (result.data.status === 200) {
+    //       this.tableData = result.data.obj.list;
+    //       console.log(this.tableData)
+    //       this.totals = result.data.total;
+    //     } else {
+    //       Toast("加载失败");
+    //     }
+    //   }
   }
 }
 </script>

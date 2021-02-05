@@ -211,14 +211,13 @@ export default {
         if (res.status == 200) {
           console.log(res.data)
           var list = res.data
-        }
+        } return list
         else {
-          Toast("加载失败");
-        }
-        return list
-      })
-
+      Toast("加载失败");
     }
+  })
+
+}
 
   }
 }

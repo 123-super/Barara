@@ -6,17 +6,67 @@
         <div class="bancontent">
           <div class="banner">
             <ul class="bannerlist">
-              <li class="listitem" v-for="item in listdata" :key="item.id">
+              <li class="listitem">
                 <a href="" class="banitems"
-                  >{{ item.name }}<i class="iconfont">&#xe633;</i></a
+                  >彩妆<i class="iconfont">&#xe633;</i></a
                 >
                 <div class="banrightlist clearfix">
-                  <ul>
-                    <li v-for="it in getPC(item.id)" :key="it.id">
-                      {{ it.name }}
-                    </li>
-                  </ul>
+                  <h4>彩妆</h4>
                 </div>
+              </li>
+              <li class="listitem">
+                <a href="" class="banitems"
+                  >护肤<i class="iconfont">&#xe633;</i></a
+                >
+                <div class="banrightlist">
+                  <h4>护肤</h4>
+                </div>
+              </li>
+              <li class="listitem">
+                <a href="" class="banitems"
+                  >香水<i class="iconfont">&#xe633;</i></a
+                >
+                <div class="banrightlist">
+                  <h4>香水</h4>
+                </div>
+              </li>
+              <li class="listitem">
+                <a href="" class="banitems"
+                  >男士专区<i class="iconfont">&#xe633;</i></a
+                >
+                <div class="banrightlist">
+                  <h4>男士专区</h4>
+                </div>
+              </li>
+              <li class="listitem">
+                <a href="" class="banitems"
+                  >母婴专区<i class="iconfont">&#xe633;</i></a
+                >
+                <div class="banrightlist"></div>
+              </li>
+              <li class="listitem">
+                <a href="" class="banitems"
+                  >美容食品<i class="iconfont">&#xe633;</i></a
+                >
+                <div class="banrightlist"></div>
+              </li>
+              <li class="listitem">
+                <a href="" class="banitems"
+                  >美容仪器<i class="iconfont">&#xe633;</i></a
+                >
+                <div class="banrightlist"></div>
+              </li>
+              <li class="listitem">
+                <a href="" class="banitems"
+                  >洗浴用品<i class="iconfont">&#xe633;</i></a
+                >
+                <div class="banrightlist"></div>
+              </li>
+              <li class="listitem">
+                <a href="" class="banitems"
+                  >美发护发<i class="iconfont">&#xe633;</i></a
+                >
+                <div class="banrightlist"></div>
               </li>
             </ul>
           </div>
@@ -176,12 +226,11 @@
 </template>
 <script>
 import { lunbo } from '../../static/js/firstpagelunbo'
-import { getCategory, getProductByCid } from '../api/category'
+import { getCategory } from '../api/category'
 export default {
   data() {
     return {
-      listdata: [],
-      productlist: [],
+
     }
   },
   components: {
@@ -196,30 +245,20 @@ export default {
   },
   methods: {
     getCg() {
-      getCategory().then((res) => {
-        if (res.status == 200) {
-          this.listdata = res.data
-        }
-        else {
-          Toast("加载失败");
-        }
+      getCategory().then((result) => {
+        console.log(res)
       })
-    },
-    getPC(cid) {
-      return getProductByCid(cid).then((res) => {
-        console.log(res.status)
-        if (res.status == 200) {
-          console.log(res.data)
-          var list = res.data
-        }
-        else {
-          Toast("加载失败");
-        }
-        return list
-      })
-
     }
-
+    //   listUser({ pageNo: this.currentPage, pageSize: this.pageSize }).then((result) => {
+    //     console.log(result)
+    //     if (result.data.status === 200) {
+    //       this.tableData = result.data.obj.list;
+    //       console.log(this.tableData)
+    //       this.totals = result.data.total;
+    //     } else {
+    //       Toast("加载失败");
+    //     }
+    //   }
   }
 }
 </script>

@@ -214,8 +214,7 @@ export default {
         }
         else {
           Toast("加载失败");
-        }
-        return list
+        } return list
       })
 
     }

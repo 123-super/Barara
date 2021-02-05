@@ -11,6 +11,7 @@
                   >{{ item.name }}<i class="iconfont">&#xe633;</i></a
                 >
                 <div class="banrightlist clearfix">
+                  <h4>{{ item.name }}</h4>
                   <ul>
                     <li v-for="it in getPC(item.id)" :key="it.id">
                       {{ it.name }}
@@ -193,6 +194,7 @@ export default {
   },
   created: function () {
     this.getCg()
+
   },
   methods: {
     getCg() {
@@ -206,20 +208,17 @@ export default {
       })
     },
     getPC(cid) {
-      return getProductByCid(cid).then((res) => {
+      getProductByCid(cid).then((res) => {
         console.log(res.status)
         if (res.status == 200) {
           console.log(res.data)
-          var list = res.data
+          return res.data
         }
         else {
           Toast("加载失败");
         }
-        return list
       })
-
     }
-
   }
 }
 </script>

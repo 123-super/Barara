@@ -210,12 +210,11 @@ export default {
         console.log(res.status)
         if (res.status == 200) {
           console.log(res.data)
-          var list = res.data
+          return res.data
         }
         else {
           Toast("加载失败");
         }
-        return list
       })
 
     }
