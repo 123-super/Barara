@@ -405,21 +405,15 @@
  }
  /* 主页分类模块 */
  
- .category-part {
-     background-color: rgb(245, 245, 245);
-     padding: 70px 20px;
- }
- 
  .category-part h2 {
      margin-left: 100px;
-     margin-bottom: 20px;
      /* float: left; */
  }
  
  .category-part .cube {
      width: 20px;
      height: 28px;
-     background: rgb(189, 1, 16);
+     background: black;
      float: left;
  }
  

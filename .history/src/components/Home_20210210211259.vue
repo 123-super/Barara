@@ -75,7 +75,6 @@
           v-for="it1 in listdata"
           :key="it1.id"
         >
-          <div class="cube"></div>
           <h2>{{ it1.name }}</h2>
           <ul class="category-right">
             <li

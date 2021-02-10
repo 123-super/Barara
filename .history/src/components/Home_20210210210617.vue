@@ -75,7 +75,6 @@
           v-for="it1 in listdata"
           :key="it1.id"
         >
-          <div class="cube"></div>
           <h2>{{ it1.name }}</h2>
           <ul class="category-right">
             <li
@@ -85,11 +84,15 @@
               style=""
             >
               <a href="javascript:;" style="color: black">
-                <div class="cbrand">{{ it2.brand }}</div>
+                <div>{{ it2.brand }}</div>
                 <div>{{ it2.name }}</div>
-                <div class="cprice">{{ it2.price }}</div>
+                <div>{{ it2.price }}</div>
                 <div>
-                  <img src="../../static/img/兰蔻.jpg" alt="商品图片" />
+                  <img
+                    src="../../static/img/兰蔻.jpg"
+                    alt=""
+                    style="width: 100%; height: 100px"
+                  />
                 </div>
               </a>
             </li>

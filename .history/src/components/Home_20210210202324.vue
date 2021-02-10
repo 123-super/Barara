@@ -71,26 +71,83 @@
     <div class="categoryModule">
       <div class="container">
         <div
-          class="category-part clearfix"
+          class="category-title clearfix"
           v-for="it1 in listdata"
           :key="it1.id"
         >
-          <div class="cube"></div>
-          <h2>{{ it1.name }}</h2>
+          <a style="height: 36px" href="javascript:;">
+            <h2>{{ it1.name }}</h2>
+          </a>
+        </div>
+        <div class="category-content">
+          <div class="category-leftbg">
+            <a href="javascript:;"
+              ><img src="../../static/img/categoryhufu.jpg" alt="categoryhufu"
+            /></a>
+          </div>
           <ul class="category-right">
-            <li
-              class="category_right_li clearfix"
-              v-for="it2 in clist[it1.id - 2]"
-              :key="it2.id"
-              style=""
-            >
-              <a href="javascript:;" style="color: black">
-                <div class="cbrand">{{ it2.brand }}</div>
-                <div>{{ it2.name }}</div>
-                <div class="cprice">{{ it2.price }}</div>
-                <div>
-                  <img src="../../static/img/兰蔻.jpg" alt="商品图片" />
-                </div>
+            <li class="category_right_li" v-for="it2 in clist" :key="it2.id">
+              <a href="">
+                <div>{{ it2.brand }}</div>
+                <div>{{it2.name}}</div>
+                <div>{{it2.price}}</div>
+                <div><img src="../../static/img/兰蔻.jpg" alt="" /></div>
+              </a>
+            </li>
+            <li class="category_right_li">
+              <a href="">
+                <div>Lancome</div>
+                <div>兰蔻眼部精华液</div>
+                <div>￥450</div>
+                <div><img src="../../static/img/兰蔻.jpg" alt="" /></div>
+              </a>
+            </li>
+            <li class="category_right_li">
+              <a href="">
+                <div>Lancome</div>
+                <div>兰蔻眼部精华液</div>
+                <div>￥450</div>
+                <div><img src="../../static/img/兰蔻.jpg" alt="" /></div>
+              </a>
+            </li>
+            <li class="category_right_li">
+              <a href="">
+                <div>Lancome</div>
+                <div>兰蔻眼部精华液</div>
+                <div>￥450</div>
+                <div><img src="../../static/img/兰蔻.jpg" alt="" /></div>
+              </a>
+            </li>
+            <li class="category_right_li">
+              <a href="">
+                <div>Lancome</div>
+                <div>兰蔻眼部精华液</div>
+                <div>￥450</div>
+                <div><img src="../../static/img/兰蔻.jpg" alt="" /></div>
+              </a>
+            </li>
+            <li class="category_right_li">
+              <a href="">
+                <div>Lancome</div>
+                <div>兰蔻眼部精华液</div>
+                <div>￥450</div>
+                <div><img src="../../static/img/兰蔻.jpg" alt="" /></div>
+              </a>
+            </li>
+            <li class="category_right_li">
+              <a href="">
+                <div>Lancome</div>
+                <div>兰蔻眼部精华液</div>
+                <div>￥450</div>
+                <div><img src="../../static/img/兰蔻.jpg" alt="" /></div>
+              </a>
+            </li>
+            <li class="category_right_li">
+              <a href="">
+                <div>Lancome</div>
+                <div>兰蔻眼部精华液</div>
+                <div>￥450</div>
+                <div><img src="../../static/img/兰蔻.jpg" alt="" /></div>
               </a>
             </li>
           </ul>
@@ -152,7 +209,6 @@ export default {
   created: function () {
     this.getCg()
     this.getPC()
-    this.getProductByCidlimit()
   },
   methods: {
     getCg() {
@@ -168,25 +224,33 @@ export default {
     getPC() {
       for (var i = 2; i < 11; i++) {
         getProductByCid(i).then((res) => {
+          // console.log(res.status)
           if (res.status == 200) {
+            //   console.log(res.data)
+            //   this.productlist = []
+            //   console.log(this.productlist.length + "+++++++")
+            //   this.productlist = res.data
+            //   console.log(this.productlist.length + "_________")
+            console.log(res.data)
             this.productlist.push(res.data)
           }
           else {
             Toast("加载失败");
           }
         })
+        //   let productlist = this.productlist
+        //   console.log(cid + ")))))))))")
+        //   return productlist
       }
     },
-    getProductByCidlimit() {
-      for (var i = 2; i < 11; i++)
-        getProductByCidlimit(i).then((res) => {
-          if (res.status == 200) {
-            this.clist.push(res.data)  //首页商品分类推荐
-          }
-          console.log(res.data)
-        })
+    getProductByCidlimit(cid) {
+      getProductByCidlimit(cid).then((res) => {
+        if (res.status == 200) {
+          this.clist = res.data  //首页商品分类推荐
+        }
+        console.log(res.data)
+      })
     }
-
   }
 }
 </script>

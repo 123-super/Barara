@@ -115,7 +115,7 @@ export default {
     getProduct(id) {
       getProductById(id).then((res) => {
         this.productitems = res.data
-        // console.log(res.data)
+        console.log(res.data)
       })
     },
     getProductNorms(pid, ptid) {

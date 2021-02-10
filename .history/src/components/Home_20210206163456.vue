@@ -12,26 +12,8 @@
                 >
                 <div class="banrightlist clearfix">
                   <ul>
-                    <li
-                      v-for="it in productlist[item.id - 2]"
-                      :key="it.id"
-                      style="
-                        width: 400px;
-                        float: left;
-                        margin-left: 50px;
-                        font-size: 14px;
-                        font-weight: bold;
-                        cursor: pointer;
-                      "
-                    >
-                      <router-link
-                        :to="{
-                          path: '/ProductDetail',
-                          query: { id: it.id, cid: it.cid },
-                        }"
-                        style="color: black"
-                        ><span> {{ it.name }}</span></router-link
-                      >
+                    <li v-for="it in getPC(item.id)" :key="it.id">
+                      {{ it.name }}
                     </li>
                   </ul>
                 </div>
@@ -70,27 +52,89 @@
     <!-- 主页分类模块 -->
     <div class="categoryModule">
       <div class="container">
-        <div
-          class="category-part clearfix"
-          v-for="it1 in listdata"
-          :key="it1.id"
-        >
-          <div class="cube"></div>
-          <h2>{{ it1.name }}</h2>
+        <div class="category-title clearfix">
+          <a style="height: 36px" href="javascript:;">
+            <h2>护肤品类</h2>
+          </a>
+          <ul>
+            <li><a href=""> 惠选套装</a></li>
+            <li><a href="">面部精华</a><span>|</span></li>
+            <li><a href="">面膜</a><span>|</span></li>
+            <li><a href="">眼部护理</a><span>|</span></li>
+            <li><a href="">清洁</a><span>|</span></li>
+            <li><a href="">卸妆</a><span>|</span></li>
+            <li><a href="">唇部</a><span>|</span></li>
+          </ul>
+        </div>
+        <div class="category-content">
+          <div class="category-leftbg">
+            <a href="javascript:;"
+              ><img src="../../static/img/categoryhufu.jpg" alt="categoryhufu"
+            /></a>
+          </div>
           <ul class="category-right">
-            <li
-              class="category_right_li clearfix"
-              v-for="it2 in clist[it1.id - 2]"
-              :key="it2.id"
-              style=""
-            >
-              <a href="javascript:;" style="color: black">
-                <div class="cbrand">{{ it2.brand }}</div>
-                <div>{{ it2.name }}</div>
-                <div class="cprice">{{ it2.price }}</div>
-                <div>
-                  <img src="../../static/img/兰蔻.jpg" alt="商品图片" />
-                </div>
+            <li class="category_right_li">
+              <a href="">
+                <div>Lancome</div>
+                <div>兰蔻眼部精华液</div>
+                <div>￥450</div>
+                <div><img src="../../static/img/兰蔻.jpg" alt="" /></div>
+              </a>
+            </li>
+            <li class="category_right_li">
+              <a href="">
+                <div>Lancome</div>
+                <div>兰蔻眼部精华液</div>
+                <div>￥450</div>
+                <div><img src="../../static/img/兰蔻.jpg" alt="" /></div>
+              </a>
+            </li>
+            <li class="category_right_li">
+              <a href="">
+                <div>Lancome</div>
+                <div>兰蔻眼部精华液</div>
+                <div>￥450</div>
+                <div><img src="../../static/img/兰蔻.jpg" alt="" /></div>
+              </a>
+            </li>
+            <li class="category_right_li">
+              <a href="">
+                <div>Lancome</div>
+                <div>兰蔻眼部精华液</div>
+                <div>￥450</div>
+                <div><img src="../../static/img/兰蔻.jpg" alt="" /></div>
+              </a>
+            </li>
+            <li class="category_right_li">
+              <a href="">
+                <div>Lancome</div>
+                <div>兰蔻眼部精华液</div>
+                <div>￥450</div>
+                <div><img src="../../static/img/兰蔻.jpg" alt="" /></div>
+              </a>
+            </li>
+            <li class="category_right_li">
+              <a href="">
+                <div>Lancome</div>
+                <div>兰蔻眼部精华液</div>
+                <div>￥450</div>
+                <div><img src="../../static/img/兰蔻.jpg" alt="" /></div>
+              </a>
+            </li>
+            <li class="category_right_li">
+              <a href="">
+                <div>Lancome</div>
+                <div>兰蔻眼部精华液</div>
+                <div>￥450</div>
+                <div><img src="../../static/img/兰蔻.jpg" alt="" /></div>
+              </a>
+            </li>
+            <li class="category_right_li">
+              <a href="">
+                <div>Lancome</div>
+                <div>兰蔻眼部精华液</div>
+                <div>￥450</div>
+                <div><img src="../../static/img/兰蔻.jpg" alt="" /></div>
               </a>
             </li>
           </ul>
@@ -132,14 +176,12 @@
 </template>
 <script>
 import { lunbo } from '../../static/js/firstpagelunbo'
-import { getCategory, getProductByCidlimit } from '../api/category'
-import { getProductByCid } from '../api/product'
+import { getCategory, getProductByCid } from '../api/category'
 export default {
   data() {
     return {
       listdata: [],
       productlist: [],
-      clist: []
     }
   },
   components: {
@@ -151,8 +193,6 @@ export default {
   },
   created: function () {
     this.getCg()
-    this.getPC()
-    this.getProductByCidlimit()
   },
   methods: {
     getCg() {
@@ -165,26 +205,19 @@ export default {
         }
       })
     },
-    getPC() {
-      for (var i = 2; i < 11; i++) {
-        getProductByCid(i).then((res) => {
-          if (res.status == 200) {
-            this.productlist.push(res.data)
-          }
-          else {
-            Toast("加载失败");
-          }
-        })
-      }
-    },
-    getProductByCidlimit() {
-      for (var i = 2; i < 11; i++)
-        getProductByCidlimit(i).then((res) => {
-          if (res.status == 200) {
-            this.clist.push(res.data)  //首页商品分类推荐
-          }
+    getPC(cid) {
+      getProductByCid(cid).then((res) => {
+        console.log(res.status)
+        if (res.status == 200) {
           console.log(res.data)
-        })
+          var list = res.data
+        }
+        else {
+          Toast("加载失败");
+        }
+        return list
+      })
+  return list
     }
 
   }

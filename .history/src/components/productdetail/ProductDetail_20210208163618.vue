@@ -7,20 +7,27 @@
           <img src="../../../static/img/testImg/detail1.jpg" alt="商品图片" />
         </div>
         <div class="detail-rightinfo">
-          <h2 class="dtitle">{{ productitems[0].name }}</h2>
+          <h2 class="dtitle">{{ productitems.name }}</h2>
           <hr />
           <div class="one-p">
             <span class="keys">促销价</span>
-            <span class="pprice">{{ productitems[0].price }}</span>
+            <span class="pprice">{{ productitems.price }}</span>
           </div>
           <div class="one-o">
             <span class="keys">品牌</span>
-            <s class="oprice">{{ productitems[0].brand }}</s>
+            <s class="oprice">{{ productitems.brand }}</s>
           </div>
           <div class="two">
             <span class="keys">规格</span>
             <ul>
-              <li @click="checknorms(item.id)">{{}}</li>
+              <li
+                v-for="item in productitems.norms"
+                :key="item.id"
+                :id="item.id"
+                @click="checknorms(item.id)"
+              >
+                {{ item.normsvalue }}
+              </li>
             </ul>
           </div>
           <div class="three">
@@ -76,7 +83,7 @@
   </div>
 </template>
 <script>
-import { getProductById, getPVByPidAndPtid } from '../../api/product'
+import { getProductById } from '../../api/product'
 export default {
   data() {
     return {
@@ -87,7 +94,38 @@ export default {
       imgurl: '',
       pid: '',
       ptid: '',
-      productitems: {}
+      productitems: {
+        id: 1,
+        name: '丝芙兰亮彩唇釉',
+        orignalprice: 200,
+        promoteprice: 150,
+        stock: 9,
+        createdate: '2020/01/01',
+        comments: [{
+          id: 1,
+          user: '张三',
+          content: '好好看啊，我很喜欢',
+          createdate: '2012/01/10'
+        },
+        {
+          id: 2,
+          user: '李四',
+          content: '好好看啊，我很喜欢aaaaaaaaaa',
+          createdate: '2012/02/10'
+        }
+        ],
+        norms: [{
+          id: 1,
+          normsvalue: "红",
+          imgid: '../../../static/img/testImg/detail1.jpg'
+        },
+        {
+          id: 2,
+          normsvalue: "粉",
+          imgid: '../../../static/img/testImg/amani.jpg'
+        }
+        ]
+      }
     }
   },
 
@@ -96,16 +134,17 @@ export default {
     this.ptid = this.$route.query.cid
     console.log(this.pid + "=========")
     this.getProduct(this.pid)
-    console.log(this.ptid + "--------")
-    this.getProductNorms(this.pid, this.ptid)
   },
   methods: {
     checknorms(id) {
       var e = e || window.event;
       var target = e.target || e.srcElement;
+      console.log(target)
+      console.log(target.id)
       let c = this.productitems.norms.find(function (item) {
         return item.id == id
       })
+      console.log(c.imgid)
       if (c) {
         $('.two li').removeClass('active')
         $('.two li').eq(id - 1).addClass('active')
@@ -115,13 +154,10 @@ export default {
     getProduct(id) {
       getProductById(id).then((res) => {
         this.productitems = res.data
-        // console.log(res.data)
-      })
-    },
-    getProductNorms(pid, ptid) {
-      getPVByPidAndPtid(pid, ptid).then((res) => {
         console.log(res.data)
       })
+    },
+    getProductNorms() {
 
     }
   },

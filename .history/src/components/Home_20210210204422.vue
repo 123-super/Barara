@@ -71,26 +71,23 @@
     <div class="categoryModule">
       <div class="container">
         <div
-          class="category-part clearfix"
+          class="category-title clearfix"
           v-for="it1 in listdata"
           :key="it1.id"
         >
-          <div class="cube"></div>
-          <h2>{{ it1.name }}</h2>
+            <h2>{{ it1.name }}</h2>
           <ul class="category-right">
             <li
-              class="category_right_li clearfix"
+              class="category_right_li"
               v-for="it2 in clist[it1.id - 2]"
               :key="it2.id"
-              style=""
+              style="float:left;width:20%;height:200px"
             >
-              <a href="javascript:;" style="color: black">
-                <div class="cbrand">{{ it2.brand }}</div>
+              <a href="javascript:;" style="">
+                <div>{{ it2.brand }}</div>
                 <div>{{ it2.name }}</div>
-                <div class="cprice">{{ it2.price }}</div>
-                <div>
-                  <img src="../../static/img/兰蔻.jpg" alt="商品图片" />
-                </div>
+                <div>{{ it2.price }}</div>
+                <div><img src="../../static/img/兰蔻.jpg" alt="" style="width:50px;height:50px;"/></div>
               </a>
             </li>
           </ul>

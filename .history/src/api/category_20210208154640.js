@@ -5,10 +5,3 @@ export function getCategory() {
         method: 'get',
     })
 }
-
-export function getProductByCidlimit(cid) {
-    return request({
-        url: `/category/getProductByCidlimit?cid=${cid}`,
-        method: 'get',
-    })
-}

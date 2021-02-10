@@ -8,7 +8,7 @@ export function getCategory() {
 
 export function getProductByCidlimit(cid) {
     return request({
-        url: `/category/getProductByCidlimit?cid=${cid}`,
+        url: `/category/getProductByCidlimit?cid=#{cid}`,
         method: 'get',
     })
 }

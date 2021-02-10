@@ -7,20 +7,27 @@
           <img src="../../../static/img/testImg/detail1.jpg" alt="商品图片" />
         </div>
         <div class="detail-rightinfo">
-          <h2 class="dtitle">{{ productitems[0].name }}</h2>
+          <h2 class="dtitle">{{ productitems.name }}</h2>
           <hr />
           <div class="one-p">
             <span class="keys">促销价</span>
-            <span class="pprice">{{ productitems[0].price }}</span>
+            <span class="pprice">{{ productitems.price }}</span>
           </div>
           <div class="one-o">
             <span class="keys">品牌</span>
-            <s class="oprice">{{ productitems[0].brand }}</s>
+            <s class="oprice">{{ productitems.brand }}</s>
           </div>
           <div class="two">
             <span class="keys">规格</span>
             <ul>
-              <li @click="checknorms(item.id)">{{}}</li>
+              <li
+                v-for="item in getProductNorms(productitems.id, ptid)"
+                :key="item.id"
+                :id="item.id"
+                @click="checknorms(item.id)"
+              >
+                {{ item.normsvalue }}
+              </li>
             </ul>
           </div>
           <div class="three">
@@ -115,7 +122,7 @@ export default {
     getProduct(id) {
       getProductById(id).then((res) => {
         this.productitems = res.data
-        // console.log(res.data)
+        console.log(res.data)
       })
     },
     getProductNorms(pid, ptid) {

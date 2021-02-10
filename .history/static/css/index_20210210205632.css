@@ -20,7 +20,6 @@
      color: #333;
      font-size: 14px;
      font-weight: 400;
-     border: none;
  }
  
  ul,
@@ -405,48 +404,63 @@
  }
  /* 主页分类模块 */
  
- .category-part {
-     background-color: rgb(245, 245, 245);
-     padding: 70px 20px;
+ .category-title {
+     /* position: relative; */
  }
  
- .category-part h2 {
-     margin-left: 100px;
-     margin-bottom: 20px;
-     /* float: left; */
+ .category-title h2 {
+     /* float: left;
+     width: 387px;
+     color: black;
+     position: absolute;
+     bottom: 10px; */
  }
  
- .category-part .cube {
-     width: 20px;
-     height: 28px;
-     background: rgb(189, 1, 16);
-     float: left;
+ .category-title li a {
+     /* color: black;
+     font-size: 14px;
+     font-weight: 400; */
+ }
+ 
+ .category-title li span {
+     /* margin: 0px 10px;
+     color: #d4d4d4; */
+ }
+ 
+ .category-title ul {
+     /* float: right;
+     position: absolute;
+     bottom: -2px;
+     right: 0px; */
+ }
+ 
+ .category-title li {
+     /* float: left;
+     line-height: 36px; */
+ }
+ 
+ .category-leftbg {
+     /* float: left;
+     width: 390px;
+     height: 500px; */
+ }
+ 
+ .category-right {
+     /* width: 800px;
+     height: 500px;
+     float: right; */
  }
  
  .category-right .category_right_li {
      float: left;
-     width: 18%;
-     height: 285px;
-     padding: 10px;
+     width: 20%;
+     height: 200px;
+     margin-right: 5px;
  }
  
- .category-right .category_right_li:hover {
+ .category-right .category_right_li :hover {
      border: 1px solid black;
  }
  /* .category-right .category_right_li div {
      color: black;
  } */
- 
- .category_right_li img {
-     width: 80%;
-     margin: 0px auto;
-     height: 180px;
- }
- 
- .category_right_li .cbrand,
- .category_right_li .cprice {
-     font-weight: bold;
-     font-size: 16px;
-     padding-top: 5px;
-     padding-bottom: 10px
- }
