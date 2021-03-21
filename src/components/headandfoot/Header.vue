@@ -4,71 +4,14 @@
       <div class="container">
         <div class="topbar-nav">
           <a href="" style="color: rgb(212, 40, 38)">欢迎来到巴拉啦官网</a
-          ><span>|</span> <a href="">我的订单</a><span>|</span>
-          <el-popover placement="right-end" trigger="click">
-            <el-table
-              :data="p"
-              style="width: 1095px"
-              @selection-change="handleSelectionChange"
-              ref="multipleTable"
-            >
-              <el-table-column type="selection" label="全选" width="55">
-              </el-table-column>
-              <el-table-column label="商品图片" width="120">
-                <template>
-                  <img
-                    src="../../../static/img/testImg/amani.jpg"
-                    style="width: 50px; height: 50px"
-                  />
-                </template>
-              </el-table-column>
-              <el-table-column prop="name" label="商品信息" width="140">
-              </el-table-column>
-              <el-table-column prop="price" label="单价" width="120">
-              </el-table-column>
-              <el-table-column label="数量" width="240">
-                <template>
-                  <el-input-number
-                    v-model="number"
-                    :min="1"
-                    :max="10"
-                    label="描述文字"
-                  ></el-input-number>
-                </template>
-              </el-table-column>
-              <el-table-column label="金额" width="120">
-                <template slot-scope="scope">
-                  <span>{{ scope.row.price * number }} * {{ number }}</span>
-                </template>
-              </el-table-column>
-              <el-table-column label="操作" width="200">
-                <template slot-scope="scope">
-                  <el-button
-                    type="text"
-                    @click="handleClick(scope.row)"
-                    size="small"
-                    >刪除</el-button
-                  >
-                </template>
-              </el-table-column>
-            </el-table>
-
-            <a href="javascript:;" slot="reference"
-              ><i class="iconfont">&#xe607;</i>购物车<span>(0)</span></a
-            >
-            <div class="jiesuan">
-              <div class="jiesuan_left"></div>
-              <div class="jiesuan_right">
-                <span>总计:</span>
-                <span class="jiesuan_price">{{ getTotalPrice }}元</span
-                ><span>数量:{{ getTotalNumber }}件</span>
-                <el-button
-                  style="background-color: rgb(180, 2, 28); color: white"
-                  >去结算</el-button
-                >
-              </div>
-            </div>
-          </el-popover>
+          ><span>|</span> <a href="javascript:;" @click="toMyOrder">我的订单</a
+          ><span>|</span>
+          <a href="javascript:;" slot="reference" @click="toShopCart"
+            ><i class="iconfont">&#xe607;</i>购物车<span style="color: white">{{
+              $store.state.shopcart.length
+            }}</span
+            >件</a
+          >
           <span>|</span>
         </div>
         <div class="topbar-info">
@@ -96,88 +39,28 @@
 export default {
   data() {
     return {
-      number: 1,
-      multipleSelection: [],
-      number: 1,
-      tableData: [{
-        name: '阿玛尼唇釉',
-        price: 150,
-        src: '../../../static/img/testImg/amani.jpg',
-        number: 1
-      },
-      {
-        name: 'memei口红',
-        price: 100,
-        src: '../../../static/img/testImg/amani.jpg',
-        number: 1
-      }]
     }
   },
 
-
   methods: {
-    handleSelectionChange(val) {
-      this.multipleSelection = val
-    },
-    allchecked(rows) {
-      //   console.log(rows)
-      rows.forEach((item) => {
-        this.$refs.multipleTable.toggleRowSelection(item)
-      })
+    toShopCart() {
+      this.$router.push("/shopcart")
     },
     register() {
       this.$router.push({
         path: "/register",
       });
     },
-  },
-  props: ["p"],
-  computed: {
-    getTotalPrice() {
-      var totalprice = 0
-      this.multipleSelection.forEach((item) => {
-        // console.log(item)
-        return totalprice = totalprice + item.number * item.price
-      })
-      return totalprice
-    },
-    getTotalNumber() {
-      var totalnumber = 0
-      this.multipleSelection.forEach((item) => {
-        return totalnumber += item.number
-        console.log(item.number + "_____")
-      })
-      return totalnumber
+    // 进入我的订单
+    toMyOrder() {
+      this.$router.push({
+        path: "/myorder",
+      });
     }
   },
-  created() {
-    // console.log("++++++++++")
-    // console.log(this.addtocart)
-  }
 }
-
 </script>
 <style>
-.jiesuan {
-  height: 50px;
-  line-height: 50px;
-  font-size: 16px;
-}
-.jiesuan_left {
-  float: left;
-  width: 60%;
-  height: 50px;
-}
-.jiesuan_right {
-  float: left;
-  width: 40%;
-}
-.jiesuan_right span {
-  margin-right: 10px;
-}
-.jiesuan_price {
-  color: rgb(180, 2, 28);
-}
 .container {
   margin: 0 auto;
   width: 1226px;
