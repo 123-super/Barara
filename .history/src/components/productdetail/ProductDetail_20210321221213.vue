@@ -18,10 +18,10 @@
             <s class="oprice">{{ productitems[0].brand }}</s>
           </div>
           <div class="two">
-            <span class="keys">规格</span>
-            <ul>
+            <!-- <span class="keys">规格</span> -->
+            <!-- <ul>
               <li @click="checknorms(item.id)">{{ norm.value }}</li>
-            </ul>
+            </ul> -->
           </div>
           <div class="three">
             <span class="keys"> 选择数量</span
@@ -50,6 +50,8 @@
             <input type="button" class="buysoon" value="立即购买" /><input
               type="submit"
               class="putincart"
+              :disabled="add == true"
+              @click="addC()"
               value="加入购物车"
             />
           </div>
@@ -112,10 +114,13 @@ export default {
       imgurl: '',
       pid: '',
       ptid: '',
-      productitems: {},
+      productitems: [],
       activeName: "first",
       pnorms: [],
-      norm: {}
+      norm: {},
+      add: false,
+      addtocart: [],
+
     }
   },
 
@@ -125,39 +130,43 @@ export default {
 
     this.getProduct(this.pid)
     this.getProductNorms(this.pid)
-    // console.log(this.pid)
     this.getPV(this.pid)
   },
   methods: {
-    checknorms(id) {
-      var e = e || window.event;
-      var target = e.target || e.srcElement;
-      let c = this.productitems.norms.find(function (item) {
-        return item.id == id
-      })
-      if (c) {
-        $('.two li').removeClass('active')
-        $('.two li').eq(id - 1).addClass('active')
-        $('.detail-leftpic img').attr('src', c.imgid)
-      }
-    },
+    // checknorms(id) {
+    //   var e = e || window.event;
+    //   var target = e.target || e.srcElement;
+    //   let c = this.productitems.norms.find(function (item) {
+    //     return item.id == id
+    //   })
+    //   if (c) {
+    //     $('.two li').removeClass('active')
+    //     $('.two li').eq(id - 1).addClass('active')
+    //     $('.detail-leftpic img').attr('src', c.imgid)
+    //   }
+    // },
     getProduct(id) {
       getProductById(id).then((res) => {
         this.productitems = res.data
-        // console.log(res.data)
       })
     },
     getProductNorms(pid) {
       getPVByPidAndPtid(pid).then((res) => {
-        // console.log(res)
         this.norm = res.data[0]
       })
     },
     getPV(pid) {
       getPVByPId(pid).then((res) => {
         this.pnorms = res.data
-        // console.log(res)
       })
+    },
+    // 加入购物车
+    addC() {
+      this.add = !this.add
+      if (this.add) {
+        let good = this.productitems[0]
+        this.$store.commit('addToShopCart', good)
+      }
     }
   },
   components: {
@@ -166,6 +175,9 @@ export default {
 }
 </script>
 <style scoped>
+input:disabled {
+  background: grey;
+}
 .detail {
   position: relative;
   margin-top: 20px;

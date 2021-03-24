@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "bootstrap": "^3.4.1",
     "element-ui": "^2.15.0",
     "jquery": "^3.5.1",
     "url-search-params-polyfill": "^8.1.0",

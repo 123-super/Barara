@@ -133,18 +133,18 @@ export default {
     this.getPV(this.pid)
   },
   methods: {
-    checknorms(id) {
-      var e = e || window.event;
-      var target = e.target || e.srcElement;
-      let c = this.productitems.norms.find(function (item) {
-        return item.id == id
-      })
-      if (c) {
-        $('.two li').removeClass('active')
-        $('.two li').eq(id - 1).addClass('active')
-        $('.detail-leftpic img').attr('src', c.imgid)
-      }
-    },
+    // checknorms(id) {
+    //   var e = e || window.event;
+    //   var target = e.target || e.srcElement;
+    //   let c = this.productitems.norms.find(function (item) {
+    //     return item.id == id
+    //   })
+    //   if (c) {
+    //     $('.two li').removeClass('active')
+    //     $('.two li').eq(id - 1).addClass('active')
+    //     $('.detail-leftpic img').attr('src', c.imgid)
+    //   }
+    // },
     getProduct(id) {
       getProductById(id).then((res) => {
         this.productitems = res.data
