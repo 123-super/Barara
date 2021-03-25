@@ -97,7 +97,7 @@ export default {
       addOrderItem({ pid, uid, number }).then((res) => {
         if (res.status == 200) {
           this.$router.push({
-            path: "/pay",
+            name: "'pay'",
             params: {
               id: this.orid
             }

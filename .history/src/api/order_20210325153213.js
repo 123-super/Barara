@@ -36,12 +36,6 @@ export function getMyOrder() {
         method: 'get',
     })
 }
-export function getOrderUnPay() {
-    return request({
-        url: `/order/getOrderUnPay`,
-        method: 'get',
-    })
-}
 export function delCurrentOrder(param) {
     return request({
         url: `/order/delCurrentOrder?id=${param}`,
@@ -50,13 +44,6 @@ export function delCurrentOrder(param) {
 }
 export function getOrderId(param) {
     return request({
-        url: `/order/getOrderId?orderNum=${param}`,
-        method: 'get'
-    })
-}
-export function updateStatus(param) {
-    return request({
-        url: `/order/updateStatus?id=${param}`,
-        method: 'post'
+        url: `/order/getOrderId?orderNum=${param}`
     })
 }

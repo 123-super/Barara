@@ -95,14 +95,7 @@ export default {
         }
       })
       addOrderItem({ pid, uid, number }).then((res) => {
-        if (res.status == 200) {
-          this.$router.push({
-            path: "/pay",
-            params: {
-              id: this.orid
-            }
-          })
-        }
+        // console.log(res.data)
       })
       //需要跳转到pay页面，得从数据库获取order的id然后通过路由跳转传到pay页面
       //用这个传递的id来修改status

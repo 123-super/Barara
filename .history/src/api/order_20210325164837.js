@@ -38,7 +38,7 @@ export function getMyOrder() {
 }
 export function getOrderUnPay() {
     return request({
-        url: `/order/getOrderUnPay`,
+        url: `/order/getMyOrder`,
         method: 'get',
     })
 }

@@ -10,7 +10,6 @@ import MyOrder from '@/components/myorder/MyOrder'
 import Register from '@/components/register/Register'
 import BackStage from '@/components/backstage/BackStage'
 import Account from "@/components/account/Account"
-import Pay from '@/components/pay/Pay'
 Vue.use(VueRouter)
 
 
@@ -68,7 +67,6 @@ const router = new VueRouter({
             },
             {
                 path: '/pay',
-                name: 'pay',
                 component: Pay
             }
         ]

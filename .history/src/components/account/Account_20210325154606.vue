@@ -87,26 +87,16 @@ export default {
       //     uid, status, createDate, orderNum, ...this.form
       //   }
       addOrder({ orderNum, ...this.form, uid, status, createDate }).then((res) => {
-        if (res.status == 200) {
-          getOrderId(orderNum).then((res) => {
-            this.orid = res.data.id
-
-          })
-        }
+        // console.log(res.data)
       })
       addOrderItem({ pid, uid, number }).then((res) => {
-        if (res.status == 200) {
-          this.$router.push({
-            path: "/pay",
-            params: {
-              id: this.orid
-            }
-          })
-        }
+        // console.log(res.data)
       })
       //需要跳转到pay页面，得从数据库获取order的id然后通过路由跳转传到pay页面
       //用这个传递的id来修改status
-
+      getOrderId(orderNum).then((res) => {
+        console.log(res + "=============")
+      })
     }
   }
 }

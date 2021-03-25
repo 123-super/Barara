@@ -51,11 +51,11 @@
               <div class="col-lg-2">实付款</div>
               <div class="col-lg-1">交易操作</div>
             </div>
-            <div class="order" v-for="item1 in unPayOrders" :key="item1.id">
+            <div class="order" v-for="item in allOrders" :key="item.id">
               <div class="orderHeader">
                 <div class="col-lg-11">
-                  <span>{{ item1.createDate }}</span> <span>订单号：</span
-                  ><span>{{ item1.orderNum }}</span>
+                  <span>{{ item.createDate }}</span> <span>订单号：</span
+                  ><span>{{ item.orderNum }}</span>
                 </div>
                 <div class="col-lg-1"><i class="el-icon-delete del"></i></div>
               </div>
@@ -63,17 +63,15 @@
                 <div class="col-lg-2">
                   <img src="" alt="商品图片" class="" />
                 </div>
-                <div class="title col-lg-5">{{ item1.name }}</div>
-                <div class="price col-lg-1">￥{{ item1.price }}</div>
-                <div class="number col-lg-1">{{ item1.number }}</div>
+                <div class="title col-lg-5">{{ item.name }}</div>
+                <div class="price col-lg-1">￥{{ item.price }}</div>
+                <div class="number col-lg-1">{{ item.number }}</div>
                 <div class="col-lg-2">
-                  <div class="totalPrice">
-                    ￥{{ item1.price * item1.number }}
-                  </div>
+                  <div class="totalPrice">￥{{ item.price * item.number }}</div>
                   <span>含运费（0.00）元</span>
                 </div>
                 <div class="status col-lg-1">
-                  <el-button type="primary">{{ item1.status }} </el-button>
+                  <el-button type="primary">{{ item.status }} </el-button>
                 </div>
               </div>
             </div>
@@ -154,13 +152,12 @@
 </template>
 <script>
 import '../../../static/css/damu.css'
-import { delCurrentOrder, getMyOrder, getOrderUnPay } from "../../api/order"
+import { delCurrentOrder, getMyOrder } from "../../api/order"
 import { mapState, mapGetters } from 'vuex'
 export default {
   data() {
     return {
       allOrders: [],
-      unPayOrders: []
     }
   },
   methods: {
@@ -170,6 +167,7 @@ export default {
         if (res.status == 200) {
           this.allOrders = res.data
         }
+        console.log(res)
       })
     },
     //删除当前订单
@@ -181,15 +179,7 @@ export default {
         }
       })
     },
-    //代付款的订单
-    getOrderUnPay() {
-      getOrderUnPay().then((res) => {
-        if (res.status == 200) {
-          this.unPayOrders = res.data
-        }
-        console.log(res.data)
-      })
-    }
+    //代付款
     //待支付
   },
   computed: {
@@ -198,7 +188,6 @@ export default {
   },
   created() {
     this.getMyOrders()
-    this.getOrderUnPay()
   }
 } 
 </script>

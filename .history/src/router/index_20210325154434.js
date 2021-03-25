@@ -68,7 +68,6 @@ const router = new VueRouter({
             },
             {
                 path: '/pay',
-                name: 'pay',
                 component: Pay
             }
         ]
