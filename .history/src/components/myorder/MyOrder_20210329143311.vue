@@ -286,7 +286,7 @@ export default {
           path: '/comment',
           query: {
             pid: item.pid,
-            uid: item.uid
+
           }
         })
         return

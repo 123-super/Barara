@@ -284,12 +284,8 @@ export default {
       } else if (item.status == "去评价") {
         this.$router.push({
           path: '/comment',
-          query: {
-            pid: item.pid,
-            uid: item.uid
-          }
+          query: item.pid
         })
-        return
       }
       console.log(item)
       updLeftStatus(item).then((res) => {

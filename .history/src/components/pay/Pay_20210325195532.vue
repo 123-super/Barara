@@ -8,11 +8,7 @@
         <div class="img-container">
           <img src="../../../static/img/pay.jpg" alt="收钱码" class="check" />
         </div>
-        <el-button
-          type="primary"
-          @click="pay()"
-          class="confirm"
-          :disabled="check"
+        <el-button type="primary" @click="pay()" class="confirm"
           >确认支付</el-button
         >
       </div>
@@ -22,23 +18,15 @@
 <script>
 import { updateStatus } from "../../api/order"
 export default {
-  data() {
-    return {
-      check: false,
-    }
-  },
   components: {
     Header: () => import('../headandfoot/Header')
   },
   methods: {
     pay() {
-      this.check = !this.check
-      let id = this.$route.query.oid
-      console.log(this.$route.query.oid)
+      let id = this.$route.params.id
+      console.log(id)
       updateStatus(id).then((res) => {
-        if (res.status == 200) {
-          this.$message.success("支付成功")
-        }
+
       })
     }
   }

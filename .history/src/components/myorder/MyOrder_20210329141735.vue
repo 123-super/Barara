@@ -281,17 +281,8 @@ export default {
         item.status = "待收货"
       } else if (item.status == "待收货") {
         item.status = "去评价"
-      } else if (item.status == "去评价") {
-        this.$router.push({
-          path: '/comment',
-          query: {
-            pid: item.pid,
-            uid: item.uid
-          }
-        })
-        return
-      }
-      console.log(item)
+      } else if (item.status ==)
+        console.log(item)
       updLeftStatus(item).then((res) => {
         if (res.status == 200) {
           this.$message.success(tip)

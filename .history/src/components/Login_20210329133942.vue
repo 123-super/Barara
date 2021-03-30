@@ -34,7 +34,6 @@
             <a href="" class="grey">忘记密码</a>
             <input
               class="loginbutton"
-              type="button"
               :disabled="checked == false"
               @click="loginClick"
               value="登录"

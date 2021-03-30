@@ -283,13 +283,8 @@ export default {
         item.status = "去评价"
       } else if (item.status == "去评价") {
         this.$router.push({
-          path: '/comment',
-          query: {
-            pid: item.pid,
-            uid: item.uid
-          }
+          path: '/comment'
         })
-        return
       }
       console.log(item)
       updLeftStatus(item).then((res) => {

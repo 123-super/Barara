@@ -285,8 +285,7 @@ export default {
         this.$router.push({
           path: '/comment',
           query: {
-            pid: item.pid,
-            uid: item.uid
+            id: item.pid
           }
         })
         return

@@ -42,22 +42,9 @@ export function getOrderUnPay() {
         method: 'get',
     })
 }
-export function getOrdersUnDeliver() {
+export function getOrderUnPay() {
     return request({
-        url: `/order/getOrdersUnDeliver`,
-        method: 'get',
-    })
-}
-
-export function getOrdersUnReceive() {
-    return request({
-        url: `/order/getOrdersUnReceive`,
-        method: 'get',
-    })
-}
-export function getOrdersUnComment() {
-    return request({
-        url: `/order/getOrdersUnComment`,
+        url: `/order/getOrderUnPay`,
         method: 'get',
     })
 }
@@ -77,12 +64,5 @@ export function updateStatus(param) {
     return request({
         url: `/order/updateStatus?id=${param}`,
         method: 'post'
-    })
-}
-export function updLeftStatus(param) {
-    return request({
-        url: `/order/updLeftStatus`,
-        method: 'post',
-        data: param
     })
 }

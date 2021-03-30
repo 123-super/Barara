@@ -111,10 +111,9 @@
                   <span>含运费（0.00）元</span>
                 </div>
                 <div class="status col-lg-1">
-                  <div>待发货</div>
                   <el-button
                     type="primary"
-                    @click="updLeftStatus(item2, '已通知卖家发货')"
+                    @click="updLeftStatus(item2.id, item2.status)"
                     >{{ item2.status }}
                   </el-button>
                 </div>
@@ -152,55 +151,13 @@
                   <span>含运费（0.00）元</span>
                 </div>
                 <div class="status col-lg-1">
-                  <el-button
-                    type="primary"
-                    @click="updLeftStatus(item3, '卖家已发货')"
-                    >{{ item3.status }}
-                  </el-button>
+                  <div>待发货</div>
+                  <el-button type="primary">{{ item3.status }} </el-button>
                 </div>
               </div>
             </div>
           </el-tab-pane>
-          <el-tab-pane label="待评价" name="fifth">
-            待评价
-            <div class="orderTitle">
-              <div class="col-lg-7">宝贝</div>
-              <div class="col-lg-1">单价</div>
-              <div class="col-lg-1">数量</div>
-              <div class="col-lg-2">实付款</div>
-              <div class="col-lg-1">交易操作</div>
-            </div>
-            <div class="order" v-for="item4 in unCommentOrder" :key="item4.id">
-              <div class="orderHeader">
-                <div class="col-lg-11">
-                  <span>{{ item4.createDate }}</span> <span>订单号：</span
-                  ><span>{{ item4.orderNum }}</span>
-                </div>
-                <div class="col-lg-1"><i class="el-icon-delete del"></i></div>
-              </div>
-              <div class="orderContent">
-                <div class="col-lg-2">
-                  <img src="" alt="商品图片" class="" />
-                </div>
-                <div class="title col-lg-5">{{ item4.name }}</div>
-                <div class="price col-lg-1">￥{{ item4.price }}</div>
-                <div class="number col-lg-1">{{ item4.number }}</div>
-                <div class="col-lg-2">
-                  <div class="totalPrice">
-                    ￥{{ item4.price * item4.number }}
-                  </div>
-                  <span>含运费（0.00）元</span>
-                </div>
-                <div class="status col-lg-1">
-                  <el-button
-                    type="primary"
-                    @click="updLeftStatus(item4, '收货成功')"
-                    >{{ item4.status }}
-                  </el-button>
-                </div>
-              </div>
-            </div>
-          </el-tab-pane>
+          <el-tab-pane label="待评价" name="fifth">待评价</el-tab-pane>
         </el-tabs>
       </template>
     </div>
@@ -208,16 +165,14 @@
 </template>
 <script>
 import '../../../static/css/damu.css'
-import { delCurrentOrder, getMyOrder, getOrderUnPay, getOrdersUnDeliver, updLeftStatus, getOrdersUnReceive, getOrdersUnComment } from "../../api/order"
+import { delCurrentOrder, getMyOrder, getOrderUnPay, getOrdersUnDeliver, updLeftStatus, getOrdersUnReceive } from "../../api/order"
 import { mapState, mapGetters } from 'vuex'
 export default {
   data() {
     return {
       allOrders: [],
       unPayOrders: [],
-      unDeliverOrder: [],
-      unReceiveOrder: [],
-      unCommentOrder: []
+      unReceiveOrder: []
     }
   },
   methods: {
@@ -259,12 +214,6 @@ export default {
         this.unReceiveOrder = res.data
       })
     },
-    //待评价的所有订单
-    getOrdersUnComment() {
-      getOrdersUnComment().then((res) => {
-        this.unCommentOrder = res.data
-      })
-    },
     //跳转到pay页面
     toPay(temp) {
       console.log(temp)
@@ -276,32 +225,16 @@ export default {
       })
     },
     //修改除了支付订单的订单状态
-    updLeftStatus(item, tip) {
-      if (item.status == "催卖家发货") {
-        item.status = "待收货"
-      } else if (item.status == "待收货") {
-        item.status = "去评价"
-      } else if (item.status == "去评价") {
-        this.$router.push({
-          path: '/comment',
-          query: {
-            pid: item.pid,
-            uid: item.uid
-          }
-        })
-        return
+    updLeftStatus(oid, ostatus) {
+      if (ostatus == "催卖家发货") {
+        let ostatus = "待收货"
+      } else if (ostatus == "待收货") {
+        let ostatus = "去评价"
       }
-      console.log(item)
-      updLeftStatus(item).then((res) => {
-        if (res.status == 200) {
-          this.$message.success(tip)
-          this.getOrdersUnDeliver()
-          this.getOrdersUnReceive()
-          this.getOrdersUnComment()
-        }
-      })
-    },
+      updLeftStatus({ id: oid, status: ostatus }).then((res) => {
 
+      })
+    }
   },
   computed: {
     ...mapState(['shopcart', 'totalPrice', 'totalNumber'])
@@ -310,9 +243,6 @@ export default {
   created() {
     this.getMyOrders()
     this.getOrderUnPay()
-    this.getOrdersUnDeliver()
-    this.getOrdersUnReceive()
-    this.getOrdersUnComment()
   }
 } 
 </script>

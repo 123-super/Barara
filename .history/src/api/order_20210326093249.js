@@ -55,12 +55,6 @@ export function getOrdersUnReceive() {
         method: 'get',
     })
 }
-export function getOrdersUnComment() {
-    return request({
-        url: `/order/getOrdersUnComment`,
-        method: 'get',
-    })
-}
 export function delCurrentOrder(param) {
     return request({
         url: `/order/delCurrentOrder?id=${param}`,

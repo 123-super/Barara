@@ -15,7 +15,7 @@
           </div>
           <div class="one-o">
             <span class="keys">品牌</span>
-            <span class="oprice">{{ productitems[0].brand }}</span>
+            <s class="oprice">{{ productitems[0].brand }}</s>
           </div>
           <div class="three">
             <span
@@ -28,7 +28,6 @@
           </div>
         </div>
       </div>
-      <div class="tocomment"></div>
     </div>
   </div>
 </template>
@@ -100,12 +99,17 @@ hr {
 
 .one-p,
 .one-o,
+.two,
 .three,
 .four,
 .five {
   margin-top: 20px;
   height: 30px;
   padding-left: 30px;
+}
+
+.two {
+  margin-top: 0px;
 }
 
 .pprice {

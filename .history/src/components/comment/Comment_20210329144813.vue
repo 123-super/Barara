@@ -15,7 +15,7 @@
           </div>
           <div class="one-o">
             <span class="keys">品牌</span>
-            <span class="oprice">{{ productitems[0].brand }}</span>
+            <s class="oprice">{{ productitems[0].brand }}</s>
           </div>
           <div class="three">
             <span
@@ -28,7 +28,6 @@
           </div>
         </div>
       </div>
-      <div class="tocomment"></div>
     </div>
   </div>
 </template>
@@ -38,8 +37,7 @@ export default {
   data() {
     return {
       pid: "",
-      uid: "",
-      productitems: []
+      uid: ""
     }
   },
   components: {
@@ -54,70 +52,12 @@ export default {
   },
   methods: {
     getProductById() {
-      getProductById(this.pid).then((res) => {
-        this.productitems = res.data
+      getProductById({ id: this.pid }).then(() => {
+
       })
     }
   },
 }
 </script>
 <style scoped>
-.detail {
-  position: relative;
-  margin-top: 20px;
-  height: 400px;
-}
-
-.detail-leftpic {
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  float: left;
-}
-
-img {
-  width: 100%;
-  height: 100%;
-}
-
-.detail-rightinfo {
-  position: absolute;
-  width: calc(100% - 400px);
-  height: 400px;
-  float: left;
-  left: 400px;
-  font-size: 16px;
-}
-
-.dtitle {
-  padding-bottom: 30px;
-}
-
-hr {
-  border: 0px;
-  border-bottom: 1px solid;
-}
-
-.one-p,
-.one-o,
-.three,
-.four,
-.five {
-  margin-top: 20px;
-  height: 30px;
-  padding-left: 30px;
-}
-
-.pprice {
-  font-size: 30px;
-  /* font-weight: 400; */
-  font-weight: bold;
-  color: rgb(194, 0, 0);
-  letter-spacing: -2px;
-}
-
-.keys {
-  display: inline-block;
-  width: 100px;
-}
 </style>

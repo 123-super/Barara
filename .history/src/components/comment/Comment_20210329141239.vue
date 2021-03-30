@@ -9,33 +9,17 @@
     </div>
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+
+    }
+  },
+  components: {
+    Header: () => import('../headandfoot/Header')
+  }
+}
+</script>
 <style scoped>
-.commentpage {
-  padding: 20px 0px 0px 40px;
-}
-
-.commentitems {
-  height: 70px;
-  margin-top: 20px;
-  border-bottom: 1px solid grey;
-}
-
-.comment {
-  font-size: 14px;
-}
-
-.commentitems > .iconfont {
-  margin-right: 50px;
-  font-size: 30px;
-}
-
-.user {
-  float: left;
-  font-size: 16px;
-}
-
-.datetime {
-  float: right;
-  font-size: 14px;
-}
 </style>

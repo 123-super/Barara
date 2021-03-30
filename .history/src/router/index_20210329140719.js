@@ -45,10 +45,14 @@ const router = new VueRouter({
             {
                 path: '/productdetail',
                 component: ProductDetail,
-            },
-            {
-                path: '/comment',
-                component: Comment
+                children: [{
+                    path: '/detailpage',
+                    component: DetailPage
+                }, {
+                    path: '/comment',
+                    component: Comment
+
+                }]
             },
             {
                 path: '/shopcart',

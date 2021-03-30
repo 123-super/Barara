@@ -99,7 +99,7 @@ export default {
           this.$router.push({
             path: "/pay",
             query: {
-              oid: this.orid,
+              oid: this.orid
             }
           })
         }

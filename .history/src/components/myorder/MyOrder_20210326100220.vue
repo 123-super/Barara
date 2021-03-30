@@ -192,6 +192,7 @@
                   <span>含运费（0.00）元</span>
                 </div>
                 <div class="status col-lg-1">
+                  <div>待发货</div>
                   <el-button
                     type="primary"
                     @click="updLeftStatus(item4, '收货成功')"
@@ -208,7 +209,7 @@
 </template>
 <script>
 import '../../../static/css/damu.css'
-import { delCurrentOrder, getMyOrder, getOrderUnPay, getOrdersUnDeliver, updLeftStatus, getOrdersUnReceive, getOrdersUnComment } from "../../api/order"
+import { delCurrentOrder, getMyOrder, getOrderUnPay, getOrdersUnDeliver, updLeftStatus, getOrdersUnReceive } from "../../api/order"
 import { mapState, mapGetters } from 'vuex'
 export default {
   data() {
@@ -281,15 +282,6 @@ export default {
         item.status = "待收货"
       } else if (item.status == "待收货") {
         item.status = "去评价"
-      } else if (item.status == "去评价") {
-        this.$router.push({
-          path: '/comment',
-          query: {
-            pid: item.pid,
-            uid: item.uid
-          }
-        })
-        return
       }
       console.log(item)
       updLeftStatus(item).then((res) => {
