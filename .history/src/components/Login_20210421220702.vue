@@ -86,8 +86,8 @@ export default {
           //   sessionStorage.setItem('user', JSON.stringify(resp.obj))
           //   console.log(sessionStorage.getItem('user'))
           this.$store.commit('savetoken', resp.data.data.token)
-          this.$store.commit('saveUser', resp.data.data.username)
-          console.log(resp.data.data)
+          this.$store.commit('saveUser', resp.data.data)
+          console.log(resp.data.data.token)
           this.$router.push("/home")
         } else {
           this.$message.error('用户或密码错误！')

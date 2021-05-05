@@ -18,7 +18,7 @@
             <el-input v-model="form.tel"></el-input>
           </el-form-item>
           <div>
-            <el-table :data="selectgoods" border style="width: 100%">
+            <el-table :data="good" border style="width: 100%">
               <el-table-column fixed prop="name" label="宝贝" width="264">
               </el-table-column>
               <el-table-column prop="price" label="单价" width="240">
@@ -69,6 +69,7 @@ export default {
         tel: '',
       },
       orid: '',
+      good: '',
     }
   },
   components: {
@@ -78,11 +79,9 @@ export default {
     ...mapState(['selectgoods', 'totalPrice', 'totalNumber'])
   },
   created() {
-
-    // this.selectgoods = [...this.$route.query.goods] || this.selectgoods
+    this.good = this.selectgoods
     // ? [...this.$route.query.goods] : this.selectgoods
-    // console.log(this.selectgoods)
-    // console.log(this.good)
+    console.log(this.good)
   },
   methods: {
     account() {
@@ -93,10 +92,9 @@ export default {
       let orderNum = +new Date()
       //判断是加入购物车结算跳转而来还是直接购买
       //   let good = !this.selectgoods[0] ? this.$route.query.goods : this.selectgoods[0]
-      //   console.log(this.selectgoods[0])
-      let good = this.selectgoods[0]
-      let pid = good.id
-      let number = good.count
+      console.log(this.good)
+      let pid = this.good.id
+      let number = this.good.count
       //   console.log(createDate)
       //   console.log(this.selectgoods)
       //   let { uid, status, createDate, orderNum, address, postNum, receiverName, tel } = {

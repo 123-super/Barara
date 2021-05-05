@@ -47,16 +47,11 @@
             服务承诺 正品保证 极速退款 赠运费险 七天无理由退换
           </div>
           <div class="five">
-            <input
-              type="button"
-              class="buysoon"
-              @click="buySoon()"
-              value="立即购买"
-            /><input
+            <input type="button" class="buysoon" value="立即购买" /><input
               type="submit"
-              class="putIncart"
+              class="putincart"
+              :disabled="add == true"
               @click="addC()"
-              ref="btn"
               value="加入购物车"
             />
           </div>
@@ -123,6 +118,7 @@ export default {
       activeName: "first",
       pnorms: [],
       norm: {},
+      add: false,
       addtocart: [],
 
     }
@@ -166,35 +162,20 @@ export default {
     },
     // 加入购物车
     addC() {
-      this.$refs.btn.disabled = true
-      if (this.$refs.btn.disabled) {
+      this.add = !this.add
+      if (this.add) {
         let good = this.productitems[0]
         this.$set(good, 'count', this.index)
         this.$store.commit('addToShopCart', good)
       }
-    },
-    //立即购买
-    buySoon() {
-      this.$refs.btn.disabled = true
-      if (this.$refs.btn.disabled) {
-        let selectgoods = Array.from(this.productitems[0])
-        console.log(this.productitems[0])
-        console.log(selectgoods)
-        this.$store.commit('updateGoodList', selectgoods)
-        this.$router.push({
-          path: "/account",
-
-        })
-      }
     }
-
   },
   components: {
     Header: () => import('../headandfoot/Header')
   },
 }
 </script>
-<style>
+<style scoped>
 input:disabled {
   background: grey;
 }
@@ -331,7 +312,7 @@ hr {
 }
 
 .buysoon,
-.putIncart {
+.putincart {
   width: 200px;
   height: 50px;
   border: 1px solid grey;
@@ -344,8 +325,8 @@ hr {
   color: rgb(194, 0, 0);
 }
 
-.putIncart {
-  background-color: rgb(194, 0, 0);
+.putincart {
+  /* background-color: rgb(194, 0, 0); */
   margin-left: 80px;
   color: white;
 }

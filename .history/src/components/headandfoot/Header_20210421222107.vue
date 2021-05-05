@@ -50,7 +50,7 @@ export default {
   methods: {
     //用户登录状态
     userState() {
-      this.uState = this.$store.state.user ? (this.$store.state.user) : 请登录
+      this.uState = this.$store.state.user ? (你好 + this.$store.state.user) : 请登录
     },
     toShopCart() {
       this.$router.push("/shopcart")

@@ -41,7 +41,7 @@
           <template slot-scope="scope">
             <el-button
               type="text"
-              @click="deleteRow(scope.$index, shopcarts)"
+              @click="deleteRow(scope.$index, tableData)"
               size="small"
               >刪除</el-button
             >

@@ -47,12 +47,7 @@
             服务承诺 正品保证 极速退款 赠运费险 七天无理由退换
           </div>
           <div class="five">
-            <input
-              type="button"
-              class="buysoon"
-              @click="buySoon()"
-              value="立即购买"
-            /><input
+            <input type="button" class="buysoon" value="立即购买" /><input
               type="submit"
               class="putIncart"
               @click="addC()"
@@ -166,35 +161,21 @@ export default {
     },
     // 加入购物车
     addC() {
-      this.$refs.btn.disabled = true
-      if (this.$refs.btn.disabled) {
+      this.$refs.btn.disabled = true,
+        this.add = !this.add
+      if (this.add) {
         let good = this.productitems[0]
         this.$set(good, 'count', this.index)
         this.$store.commit('addToShopCart', good)
       }
-    },
-    //立即购买
-    buySoon() {
-      this.$refs.btn.disabled = true
-      if (this.$refs.btn.disabled) {
-        let selectgoods = Array.from(this.productitems[0])
-        console.log(this.productitems[0])
-        console.log(selectgoods)
-        this.$store.commit('updateGoodList', selectgoods)
-        this.$router.push({
-          path: "/account",
-
-        })
-      }
     }
-
   },
   components: {
     Header: () => import('../headandfoot/Header')
   },
 }
 </script>
-<style>
+<style scoped>
 input:disabled {
   background: grey;
 }
@@ -339,7 +320,7 @@ hr {
   font-size: medium;
 }
 
-.buysoon {
+/deep/ .buysoon {
   background-color: rgb(255, 232, 229);
   color: rgb(194, 0, 0);
 }

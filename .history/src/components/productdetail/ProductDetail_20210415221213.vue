@@ -55,6 +55,7 @@
             /><input
               type="submit"
               class="putIncart"
+              style="background-color: rgb(194, 0, 0)"
               @click="addC()"
               ref="btn"
               value="加入购物车"

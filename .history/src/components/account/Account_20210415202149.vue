@@ -68,7 +68,7 @@ export default {
         receiverName: '',
         tel: '',
       },
-      orid: '',
+      orid: ''
     }
   },
   components: {
@@ -77,14 +77,8 @@ export default {
   computed: {
     ...mapState(['selectgoods', 'totalPrice', 'totalNumber'])
   },
-  created() {
-
-    // this.selectgoods = [...this.$route.query.goods] || this.selectgoods
-    // ? [...this.$route.query.goods] : this.selectgoods
-    // console.log(this.selectgoods)
-    // console.log(this.good)
-  },
   methods: {
+
     account() {
       //首先把order和orderitem的数据提交到数据库
       let status = "待支付"
@@ -92,11 +86,10 @@ export default {
       let createDate = new Date()
       let orderNum = +new Date()
       //判断是加入购物车结算跳转而来还是直接购买
-      //   let good = !this.selectgoods[0] ? this.$route.query.goods : this.selectgoods[0]
-      //   console.log(this.selectgoods[0])
-      let good = this.selectgoods[0]
-      let pid = good.id
-      let number = good.count
+      let goods = !this.selectgoods[0] ? this.$route.query.goods : this.selectgoods[0]
+      console.log(goods)
+      let pid = goods.id
+      let number = goods.count
       //   console.log(createDate)
       //   console.log(this.selectgoods)
       //   let { uid, status, createDate, orderNum, address, postNum, receiverName, tel } = {

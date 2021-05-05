@@ -28,8 +28,8 @@ export default new Vuex.Store({
         savetoken(state, token) {
             state.token = token
         },
-        saveUser(state, username) {
-            state.user = username
+        saveUser(state, token) {
+            state.user = token
         }
     },
     actions: {},

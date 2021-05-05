@@ -69,6 +69,7 @@ export default {
         tel: '',
       },
       orid: '',
+      good: [],
     }
   },
   components: {
@@ -79,10 +80,10 @@ export default {
   },
   created() {
 
-    // this.selectgoods = [...this.$route.query.goods] || this.selectgoods
+    this.selectgoods = [...this.$route.query.goods] || this.selectgoods
     // ? [...this.$route.query.goods] : this.selectgoods
-    // console.log(this.selectgoods)
-    // console.log(this.good)
+    console.log(this.selectgoods)
+    console.log(this.good)
   },
   methods: {
     account() {
@@ -94,9 +95,8 @@ export default {
       //判断是加入购物车结算跳转而来还是直接购买
       //   let good = !this.selectgoods[0] ? this.$route.query.goods : this.selectgoods[0]
       //   console.log(this.selectgoods[0])
-      let good = this.selectgoods[0]
-      let pid = good.id
-      let number = good.count
+      let pid = this.good.id
+      let number = this.good.count
       //   console.log(createDate)
       //   console.log(this.selectgoods)
       //   let { uid, status, createDate, orderNum, address, postNum, receiverName, tel } = {

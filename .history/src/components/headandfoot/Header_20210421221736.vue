@@ -16,9 +16,8 @@
           <span>|</span>
         </div>
         <div class="topbar-info">
-          <a href="" style="color: rgb(212, 40, 38)">{{ uState }}</a
-          ><span>|</span> <a href="javascript:;" @click="register()">免费注册</a
-          ><span>|</span>
+          <a href="" style="color: rgb(212, 40, 38)">请登录</a><span>|</span>
+          <a href="javascript:;" @click="register()">免费注册</a><span>|</span>
           <a href="">消息通知</a>
         </div>
       </div>
@@ -41,7 +40,6 @@
 export default {
   data() {
     return {
-      uState: ""
     }
   },
   created() {
@@ -50,7 +48,7 @@ export default {
   methods: {
     //用户登录状态
     userState() {
-      this.uState = this.$store.state.user ? (this.$store.state.user) : 请登录
+      userState = this.$store.state.user ? (你好 + this.$store.state.user) : 请登录
     },
     toShopCart() {
       this.$router.push("/shopcart")

@@ -55,6 +55,7 @@
             /><input
               type="submit"
               class="putIncart"
+              style="background-color: rgb(194, 0, 0)"
               @click="addC()"
               ref="btn"
               value="加入购物车"
@@ -177,13 +178,12 @@ export default {
     buySoon() {
       this.$refs.btn.disabled = true
       if (this.$refs.btn.disabled) {
-        let selectgoods = Array.from(this.productitems[0])
-        console.log(this.productitems[0])
-        console.log(selectgoods)
-        this.$store.commit('updateGoodList', selectgoods)
+        let good = this.productitems[0]
         this.$router.push({
-          path: "/account",
-
+          path: "/pay",
+          query: {
+            goods: good
+          }
         })
       }
     }

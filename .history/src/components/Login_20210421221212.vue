@@ -86,7 +86,7 @@ export default {
           //   sessionStorage.setItem('user', JSON.stringify(resp.obj))
           //   console.log(sessionStorage.getItem('user'))
           this.$store.commit('savetoken', resp.data.data.token)
-          this.$store.commit('saveUser', resp.data.data.username)
+          this.$store.commit('saveUser', resp.data.data)
           console.log(resp.data.data)
           this.$router.push("/home")
         } else {
