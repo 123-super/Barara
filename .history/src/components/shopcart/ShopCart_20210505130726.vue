@@ -85,12 +85,8 @@ export default {
   },
   methods: {
     deleteRow(index, rows) {
-      let delgoods = { index, rows }
-      this.$store.commit('deleteGoodList', delgoods)
-      this.$message({
-        message: '删除成功！',
-        type: 'success'
-      });
+      this.$store.commit('deleteGoodList', selectgoods)
+      rows.splice(index, 1);
     },
     handleSelectionChange(val) {
       this.multipleSelection = val

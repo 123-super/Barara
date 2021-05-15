@@ -40,9 +40,6 @@ const router = new VueRouter({
     {
       path: '/productdetail/searchpage',
       component: SearchPage,
-      meta: {
-        needLogin: false
-      },
     },
     {
       path: '/myorder',
@@ -85,8 +82,7 @@ const router = new VueRouter({
 })
 router.beforeEach((to, from, next) => {
   if (to.meta.needLogin) {
-    // if (store.state.token && JSON.stringify(store.state.user) !== "{}") {
-    if (store.state.token) {
+    if (store.state.token && JSON.stringify(store.state.user) !== "{}") {
       next()
     } else {
       next({

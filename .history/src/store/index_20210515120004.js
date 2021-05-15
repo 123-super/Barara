@@ -35,9 +35,7 @@ export default new Vuex.Store({
     deleteGoodList(state, delgoods) {
       state.shopcart = delgoods.rows.splice(delgoods.index, 1)
     },
-    search(state, searchResult) {
-      state.searchResult = searchResult
-    }
+    searchResult(state, )
   },
   actions: {},
 })

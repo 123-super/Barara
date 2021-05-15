@@ -85,7 +85,7 @@ export default {
         if (res.data.status == 200)
           this.$store.commit("search", res.data.data)
         this.$router.push({
-          path: "/productdetail/searchpage"
+          path: "/"
         })
       })
     }

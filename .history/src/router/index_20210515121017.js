@@ -10,7 +10,6 @@ import Register from '@/components/register/Register'
 import BackStage from '@/components/backstage/BackStage'
 import Account from "@/components/account/Account"
 import Pay from '@/components/pay/Pay'
-import SearchPage from '@/components/productdetail/searchpage/SearchPage'
 import store from "../store/index"
 Vue.use(VueRouter)
 
@@ -40,9 +39,6 @@ const router = new VueRouter({
     {
       path: '/productdetail/searchpage',
       component: SearchPage,
-      meta: {
-        needLogin: false
-      },
     },
     {
       path: '/myorder',
@@ -85,8 +81,7 @@ const router = new VueRouter({
 })
 router.beforeEach((to, from, next) => {
   if (to.meta.needLogin) {
-    // if (store.state.token && JSON.stringify(store.state.user) !== "{}") {
-    if (store.state.token) {
+    if (store.state.token && JSON.stringify(store.state.user) !== "{}") {
       next()
     } else {
       next({

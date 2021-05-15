@@ -81,12 +81,8 @@ export default {
 
     //查询商品
     search() {
-      search(this.searchName).then(res => {
-        if (res.data.status == 200)
-          this.$store.commit("search", res.data.data)
-        this.$router.push({
-          path: "/productdetail/searchpage"
-        })
+      search(searchName).then(res => {
+        console.log(res)
       })
     }
   },

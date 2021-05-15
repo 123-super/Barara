@@ -30,20 +30,18 @@
       <a href="" class="navfirsttitle">Welcome To Barara</a>
       <div class="header-search">
         <form class="search-form">
-          <input type="text" class="search-text" v-model="searchName" />
-          <span class="search-btn el-icon-search" @click="search()"></span>
+          <input type="text" class="search-text" />
+          <span class="search-btn el-icon-search"></span>
         </form>
       </div>
     </div>
   </div>
 </template>
 <script>
-import { search } from "../../api/product"
 export default {
   data() {
     return {
-      uState: "",
-      searchName: ""
+      uState: ""
     }
   },
   created() {
@@ -52,7 +50,7 @@ export default {
   methods: {
     //用户登录状态
     userState() {
-      if (JSON.stringify(this.$store.state.user) == "{}") {
+      if (this.$store.state.user == null && this.$store.state.user == "") {
         this.uState = "请登录"
       } else {
         this.uState = this.$store.state.user
@@ -76,17 +74,6 @@ export default {
     toMyOrder() {
       this.$router.push({
         path: "/myorder",
-      })
-    },
-
-    //查询商品
-    search() {
-      search(this.searchName).then(res => {
-        if (res.data.status == 200)
-          this.$store.commit("search", res.data.data)
-        this.$router.push({
-          path: "/productdetail/searchpage"
-        })
       })
     }
   },

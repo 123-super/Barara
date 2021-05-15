@@ -85,8 +85,7 @@ const router = new VueRouter({
 })
 router.beforeEach((to, from, next) => {
   if (to.meta.needLogin) {
-    // if (store.state.token && JSON.stringify(store.state.user) !== "{}") {
-    if (store.state.token) {
+    if (store.state.token && JSON.stringify(store.state.user) !== "{}") {
       next()
     } else {
       next({

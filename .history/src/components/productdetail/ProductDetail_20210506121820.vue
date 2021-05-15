@@ -177,10 +177,9 @@ export default {
     buySoon() {
       this.$refs.btn.disabled = true
       if (this.$refs.btn.disabled) {
-        // let selectgoods = this.productitems[0]
         let selectgoods = Array.from(this.productitems[0])
-        // console.log(this.productitems[0])
-        // console.log(selectgoods)
+        console.log(this.productitems[0])
+        console.log(selectgoods)
         this.$set(selectgoods, 'count', this.index)
         this.$store.commit('updateGoodList', selectgoods)
         this.$router.push({

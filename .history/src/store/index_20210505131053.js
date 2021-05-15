@@ -8,8 +8,7 @@ export default new Vuex.Store({
     totalPrice: 0,
     totalNumber: 0,
     token: 1,
-    user: {},
-    searchResult: []
+    user: {}
   },
   getters: {},
   mutations: {
@@ -32,11 +31,8 @@ export default new Vuex.Store({
     saveUser(state, username) {
       state.user = username
     },
-    deleteGoodList(state, delgoods) {
-      state.shopcart = delgoods.rows.splice(delgoods.index, 1)
-    },
-    search(state, searchResult) {
-      state.searchResult = searchResult
+    deleteGoodList(state, shopcart) {
+
     }
   },
   actions: {},
