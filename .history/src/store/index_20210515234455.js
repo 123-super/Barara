@@ -44,9 +44,6 @@ export default new Vuex.Store({
     },
     search(state, searchResult) {
       state.searchResult = searchResult
-    },
-    clearShopCart(state) {
-      state.shopcart = []
     }
   },
   actions: {},

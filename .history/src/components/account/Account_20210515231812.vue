@@ -88,26 +88,22 @@ export default {
       let orderNum = +new Date()
       //判断是加入购物车结算跳转而来还是直接购买
       //   let good = !this.selectgoods[0] ? this.$route.query.goods : this.selectgoods[0]
-      //   console.log(this.selectgoods[0])
+      console.log(this.selectgoods[0])
       let good = this.selectgoods[0]
       let pid = good.id
       let number = good.count
       addOrder({ orderNum, ...this.form, uid, status, createDate, pid, number }).then((res) => {
         if (res.status == 200) {
           getOrderId(orderNum).then((res) => {
-            // console.log(res)
-            this.orid = res.data.data.id
+            this.orid = res.obj.id
             this.$router.push({
               path: "/pay",
               query: { oid: this.orid }
             })
           })
         }
-        this.$store.commit('clearShopCart')
-      })
+      }
     }
-  }
-}
 </script>
 <style>
 .receiveGoodTitle {

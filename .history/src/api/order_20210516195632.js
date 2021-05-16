@@ -99,6 +99,6 @@ export function getComment(param) {
     return request({
         url: `/order/getComment?pid=${param}`,
         method: 'get',
-
+        data: param
     })
 }

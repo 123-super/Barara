@@ -94,11 +94,3 @@ export function addComments(param) {
         data: param
     })
 }
-
-export function getComment(param) {
-    return request({
-        url: `/order/getComment?pid=${param}`,
-        method: 'get',
-
-    })
-}

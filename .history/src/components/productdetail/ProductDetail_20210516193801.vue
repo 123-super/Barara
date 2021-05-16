@@ -93,10 +93,10 @@
                   :key="item.id"
                 >
                   <i class="iconfont">&#xe6cc;</i>
-                  <span class="comment">{{ item.content }}</span>
+                  <span class="comment">真不错呀</span>
                   <div class="clearfix">
-                    <span class="user">{{ item.username }}</span
-                    ><span class="datetime">{{ item.createDate }}</span>
+                    <span class="user">张三</span
+                    ><span class="datetime">2010-10-10</span>
                   </div>
                 </div>
               </div>
@@ -110,7 +110,6 @@
 
 <script>
 import { getProductById, getPVByPidAndPtid, getPVByPId } from '../../api/product'
-import { getComment } from '../../api/order'
 export default {
   data() {
     return {
@@ -137,14 +136,13 @@ export default {
     this.getProduct(this.pid)
     this.getProductNorms(this.pid)
     this.getPV(this.pid)
-    this.getComment(this.pid)
+    this.getComment()
   },
   methods: {
-    getComment(pid) {
-      getComment(pid).then(res => {
-        console.log(res)
+    getComment() {
+      getComment({ pid: this.pid }).then(res => {
         if (res.status == 200) {
-          this.comments = res.data.data
+          this.comments = res.data
         }
       })
     },

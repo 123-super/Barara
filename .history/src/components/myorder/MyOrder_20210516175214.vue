@@ -35,9 +35,7 @@
                   <span>含运费（0.00）元</span>
                 </div>
                 <div class="status col-lg-1">
-                  <el-button
-                    type="primary"
-                    @click="updLeftStatus(item, item.status)"
+                  <el-button type="primary" @click="updLeftStatus(item, '状态')"
                     >{{ item.status }}
                   </el-button>
                 </div>
@@ -251,7 +249,7 @@ export default {
         if (res.status == 200) {
           this.unPayOrders = res.data.data
         }
-        // console.log(res.obj)
+        console.log(res.obj)
       })
     },
     //待发货的所有订单
@@ -274,7 +272,7 @@ export default {
     },
     //跳转到pay页面
     toPay(temp) {
-      //   console.log(temp)
+      console.log(temp)
       this.$router.push({
         path: "/pay",
         query: {
@@ -284,7 +282,7 @@ export default {
     },
     //修改除了支付订单的订单状态
     updLeftStatus(item, tip) {
-      if (item.status == "待支付") {
+      if (item.status == "代付款") {
         this.$router.push({
           path: "/pay",
           query: {
@@ -297,7 +295,6 @@ export default {
       } else if (item.status == "待收货") {
         item.status = "去评价"
       } else if (item.status == "去评价") {
-        console.log(item)
         this.$router.push({
           path: '/comment',
           query: {
@@ -307,7 +304,7 @@ export default {
         })
         return
       }
-      //   console.log(item)
+      console.log(item)
       updLeftStatus(item).then((res) => {
         if (res.status == 200) {
           this.$message.success(tip)

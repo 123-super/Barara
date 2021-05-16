@@ -35,9 +35,7 @@
                   <span>含运费（0.00）元</span>
                 </div>
                 <div class="status col-lg-1">
-                  <el-button
-                    type="primary"
-                    @click="updLeftStatus(item, item.status)"
+                  <el-button type="primary" @click="updLeftStatus(item)"
                     >{{ item.status }}
                   </el-button>
                 </div>

@@ -16,7 +16,7 @@ export default new Vuex.Store({
     addToShopCart(state, good) {
       state.shopcart.forEach((item) => {
         if (item.id == good.id) {
-          item.count++
+          good.
           return
         } else {
           state.shopcart.push(good)
@@ -44,9 +44,6 @@ export default new Vuex.Store({
     },
     search(state, searchResult) {
       state.searchResult = searchResult
-    },
-    clearShopCart(state) {
-      state.shopcart = []
     }
   },
   actions: {},

@@ -38,10 +38,7 @@
             ></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button
-              type="primary"
-              @click="addComment()"
-              :disabled="this.flag"
+            <el-button type="primary" @click="addComment()" :disabled="flag"
               >提交评价</el-button
             >
             <el-button>取消</el-button>
@@ -75,7 +72,6 @@ export default {
     // console.log("+++++++++++++++______")
     // console.log(this.uid)
     this.getProductById()
-    // this.getComment()
   },
   methods: {
     getProductById() {
@@ -86,14 +82,12 @@ export default {
     addComment() {
       let createDate = new Date()
       addComments({ pid: this.pid, uid: this.uid, createDate, content: this.form.desc }).then(res => {
-        console.log(res)
-        if (res.status == 200) {
+        if (res.data.status == 200) {
           this.flag = true
           this.$message.success("评论成功")
         }
       })
-    },
-
+    }
   },
 }
 </script>

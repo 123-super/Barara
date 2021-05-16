@@ -87,16 +87,12 @@
           <el-tab-pane label="评论" name="second">
             <template>
               <div class="commentpage">
-                <div
-                  class="commentitems"
-                  v-for="item in comments"
-                  :key="item.id"
-                >
+                <div class="commentitems">
                   <i class="iconfont">&#xe6cc;</i>
-                  <span class="comment">{{ item.content }}</span>
+                  <span class="comment">真不错呀</span>
                   <div class="clearfix">
-                    <span class="user">{{ item.username }}</span
-                    ><span class="datetime">{{ item.createDate }}</span>
+                    <span class="user">张三</span
+                    ><span class="datetime">2010-10-10</span>
                   </div>
                 </div>
               </div>
@@ -110,7 +106,6 @@
 
 <script>
 import { getProductById, getPVByPidAndPtid, getPVByPId } from '../../api/product'
-import { getComment } from '../../api/order'
 export default {
   data() {
     return {
@@ -126,7 +121,7 @@ export default {
       pnorms: [],
       norm: {},
       addtocart: [],
-      comments: []
+
     }
   },
 
@@ -137,17 +132,20 @@ export default {
     this.getProduct(this.pid)
     this.getProductNorms(this.pid)
     this.getPV(this.pid)
-    this.getComment(this.pid)
   },
   methods: {
-    getComment(pid) {
-      getComment(pid).then(res => {
-        console.log(res)
-        if (res.status == 200) {
-          this.comments = res.data.data
-        }
-      })
-    },
+    // checknorms(id) {
+    //   var e = e || window.event;
+    //   var target = e.target || e.srcElement;
+    //   let c = this.productitems.norms.find(function (item) {
+    //     return item.id == id
+    //   })
+    //   if (c) {
+    //     $('.two li').removeClass('active')
+    //     $('.two li').eq(id - 1).addClass('active')
+    //     $('.detail-leftpic img').attr('src', c.imgid)
+    //   }
+    // },
     getProduct(id) {
       getProductById(id).then((res) => {
         this.productitems = res.data.data

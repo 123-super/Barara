@@ -75,7 +75,6 @@ export default {
     // console.log("+++++++++++++++______")
     // console.log(this.uid)
     this.getProductById()
-    // this.getComment()
   },
   methods: {
     getProductById() {
@@ -92,8 +91,7 @@ export default {
           this.$message.success("评论成功")
         }
       })
-    },
-
+    }
   },
 }
 </script>

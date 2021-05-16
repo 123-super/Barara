@@ -75,7 +75,7 @@ export default {
     // console.log("+++++++++++++++______")
     // console.log(this.uid)
     this.getProductById()
-    // this.getComment()
+    this.getComment()
   },
   methods: {
     getProductById() {

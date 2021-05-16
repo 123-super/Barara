@@ -75,7 +75,6 @@ export default {
     // console.log("+++++++++++++++______")
     // console.log(this.uid)
     this.getProductById()
-    // this.getComment()
   },
   methods: {
     getProductById() {
@@ -87,13 +86,12 @@ export default {
       let createDate = new Date()
       addComments({ pid: this.pid, uid: this.uid, createDate, content: this.form.desc }).then(res => {
         console.log(res)
-        if (res.status == 200) {
+        if (res.data.status == 200) {
           this.flag = true
           this.$message.success("评论成功")
         }
       })
-    },
-
+    }
   },
 }
 </script>

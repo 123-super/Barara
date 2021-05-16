@@ -93,10 +93,10 @@
                   :key="item.id"
                 >
                   <i class="iconfont">&#xe6cc;</i>
-                  <span class="comment">{{ item.content }}</span>
+                  <span class="comment">{{ item.comment }}</span>
                   <div class="clearfix">
                     <span class="user">{{ item.username }}</span
-                    ><span class="datetime">{{ item.createDate }}</span>
+                    ><span class="datetime">{{ item.create }}</span>
                   </div>
                 </div>
               </div>
@@ -110,7 +110,6 @@
 
 <script>
 import { getProductById, getPVByPidAndPtid, getPVByPId } from '../../api/product'
-import { getComment } from '../../api/order'
 export default {
   data() {
     return {
@@ -137,14 +136,13 @@ export default {
     this.getProduct(this.pid)
     this.getProductNorms(this.pid)
     this.getPV(this.pid)
-    this.getComment(this.pid)
+    this.getComment()
   },
   methods: {
-    getComment(pid) {
-      getComment(pid).then(res => {
-        console.log(res)
+    getComment() {
+      getComment({ pid: this.pid }).then(res => {
         if (res.status == 200) {
-          this.comments = res.data.data
+          this.comments = res.data
         }
       })
     },

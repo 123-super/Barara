@@ -87,18 +87,10 @@ export function updLeftStatus(param) {
     })
 }
 
-export function addComments(param) {
+export function addComment(param) {
     return request({
         url: `/order/addComment`,
         method: 'post',
         data: param
-    })
-}
-
-export function getComment(param) {
-    return request({
-        url: `/order/getComment?pid=${param}`,
-        method: 'get',
-
     })
 }

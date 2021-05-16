@@ -34,7 +34,7 @@ export default {
     pay() {
       this.check = !this.check
       let id = this.$route.query.oid
-      //   console.log(this.$route.query.oid)
+      console.log(this.$route.query.oid)
       updateStatus(id).then((res) => {
         if (res.status == 200) {
           this.$message.success("支付成功")

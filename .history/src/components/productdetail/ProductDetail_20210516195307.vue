@@ -93,7 +93,7 @@
                   :key="item.id"
                 >
                   <i class="iconfont">&#xe6cc;</i>
-                  <span class="comment">{{ item.content }}</span>
+                  <span class="comment">{{ item.comment }}</span>
                   <div class="clearfix">
                     <span class="user">{{ item.username }}</span
                     ><span class="datetime">{{ item.createDate }}</span>
@@ -144,7 +144,7 @@ export default {
       getComment(pid).then(res => {
         console.log(res)
         if (res.status == 200) {
-          this.comments = res.data.data
+          this.comments = res.data
         }
       })
     },

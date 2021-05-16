@@ -30,12 +30,7 @@
       <a href="" class="navfirsttitle">Welcome To Barara</a>
       <div class="header-search">
         <form class="search-form">
-          <input
-            type="text"
-            class="search-text"
-            v-model="searchName"
-            placeholder="请输入想要购买的商品名称"
-          />
+          <input type="text" class="search-text" v-model="searchName" />
           <span class="search-btn el-icon-search" @click="search()"></span>
         </form>
       </div>
@@ -223,7 +218,7 @@ export default {
   border: 1px solid black;
   box-sizing: border-box;
   outline: 0;
-  text-indent: 30px;
+  text-indent: 10px;
 }
 
 .header-search .search-form .search-btn {

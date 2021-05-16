@@ -9,11 +9,7 @@
           :key="it2.id"
           style=""
         >
-          <a
-            href="javascript:;"
-            style="color: black"
-            @click="toProductDetail(it2.id, it2.cid)"
-          >
+          <a href="javascript:;" style="color: black" @click="toProductDetail">
             <div class="cbrand">{{ it2.brand }}</div>
             <div>{{ it2.name }}</div>
             <div class="cprice">{{ it2.price }}</div>
@@ -30,14 +26,14 @@
 export default {
   data() {
     return {
-      item: []
+
     }
   },
   methods: {
-    toProductDetail(id, cid) {
+    toProductDetail() {
       this.$router.push({
         path: '/ProductDetail',
-        query: { id: id, cid: cid },
+        query: { id: it.id, cid: it.cid },
       })
     }
   },

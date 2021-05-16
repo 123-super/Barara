@@ -28,22 +28,13 @@
           </div>
         </div>
       </div>
-      <div class="tocomment" style="margin-top: 50px">
+      <div class="tocomment">
         <el-form ref="form" :model="form" label-width="80px">
-          <el-form-item label="评价">
-            <el-input
-              type="textarea"
-              placeholder="其他买家需要您的评价哦"
-              v-model="form.desc"
-            ></el-input>
+          <el-form-item label="活动形式">
+            <el-input type="textarea" v-model="form.desc"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button
-              type="primary"
-              @click="addComment()"
-              :disabled="this.flag"
-              >提交评价</el-button
-            >
+            <el-button type="primary" @click="onSubmit">立即创建</el-button>
             <el-button>取消</el-button>
           </el-form-item>
         </el-form>
@@ -53,17 +44,13 @@
 </template>
 <script>
 import { getProductById } from "../../api/product"
-import { addComments } from "../../api/order"
 export default {
   data() {
     return {
       pid: "",
       uid: "",
       productitems: [],
-      form: {
-        desc: ""
-      },
-      flag: false
+      form:
     }
   },
   components: {
@@ -75,25 +62,13 @@ export default {
     // console.log("+++++++++++++++______")
     // console.log(this.uid)
     this.getProductById()
-    // this.getComment()
   },
   methods: {
     getProductById() {
       getProductById(this.pid).then((res) => {
         this.productitems = res.data.data
       })
-    },
-    addComment() {
-      let createDate = new Date()
-      addComments({ pid: this.pid, uid: this.uid, createDate, content: this.form.desc }).then(res => {
-        console.log(res)
-        if (res.status == 200) {
-          this.flag = true
-          this.$message.success("评论成功")
-        }
-      })
-    },
-
+    }
   },
 }
 </script>

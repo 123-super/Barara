@@ -103,7 +103,6 @@ export default {
             })
           })
         }
-        this.$store.commit('clearShopCart')
       })
     }
   }

@@ -81,6 +81,13 @@ export default {
   },
   methods: {
     account() {
+      this.$router.push({
+        path: "/pay",
+      });
+      let createDate = new Date()
+      let orderNum = +new Date()
+      let obj = { orderNum: orderNum, ...this.form, uid: 1, status: "待支付", createDate: createDate, pid: good.id, number: good.count }
+
       //首先把order和orderitem的数据提交到数据库
       let status = "待支付"
       let uid = 1
@@ -92,19 +99,33 @@ export default {
       let good = this.selectgoods[0]
       let pid = good.id
       let number = good.count
+      //   console.log(createDate)
+      //   console.log(this.selectgoods)
+      //   let { uid, status, createDate, orderNum, address, postNum, receiverName, tel } = {
+      //     uid, status, createDate, orderNum, ...this.form
+      //   }
       addOrder({ orderNum, ...this.form, uid, status, createDate, pid, number }).then((res) => {
         if (res.status == 200) {
-          getOrderId(orderNum).then((res) => {
-            // console.log(res)
-            this.orid = res.data.data.id
-            this.$router.push({
-              path: "/pay",
-              query: { oid: this.orid }
-            })
-          })
+          //   getOrderId(orderNum).then((res) => {
+          //     this.orid = res.obj.id
+
+          //   })
+
         }
-        this.$store.commit('clearShopCart')
       })
+      //   addOrderItem({}).then((res) => {
+      //     if (res.status == 200) {
+      //       this.$router.push({
+      //         path: "/pay",
+      //         query: {
+      //           oid: this.orid,
+      //         }
+      //       })
+      //     }
+      //   })
+      //需要跳转到pay页面，得从数据库获取order的id然后通过路由跳转传到pay页面
+      //用这个传递的id来修改status
+
     }
   }
 }

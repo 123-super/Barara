@@ -223,7 +223,7 @@ export default {
   border: 1px solid black;
   box-sizing: border-box;
   outline: 0;
-  text-indent: 30px;
+  text-indent: 10px;
 }
 
 .header-search .search-form .search-btn {

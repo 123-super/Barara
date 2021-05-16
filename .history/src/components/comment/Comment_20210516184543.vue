@@ -38,12 +38,7 @@
             ></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button
-              type="primary"
-              @click="addComment()"
-              :disabled="this.flag"
-              >提交评价</el-button
-            >
+            <el-button type="primary" @click="onSubmit">提交评价</el-button>
             <el-button>取消</el-button>
           </el-form-item>
         </el-form>
@@ -53,7 +48,6 @@
 </template>
 <script>
 import { getProductById } from "../../api/product"
-import { addComments } from "../../api/order"
 export default {
   data() {
     return {
@@ -62,8 +56,7 @@ export default {
       productitems: [],
       form: {
         desc: ""
-      },
-      flag: false
+      }
     }
   },
   components: {
@@ -75,7 +68,6 @@ export default {
     // console.log("+++++++++++++++______")
     // console.log(this.uid)
     this.getProductById()
-    // this.getComment()
   },
   methods: {
     getProductById() {
@@ -84,16 +76,11 @@ export default {
       })
     },
     addComment() {
-      let createDate = new Date()
-      addComments({ pid: this.pid, uid: this.uid, createDate, content: this.form.desc }).then(res => {
-        console.log(res)
-        if (res.status == 200) {
-          this.flag = true
-          this.$message.success("评论成功")
-        }
-      })
-    },
+      let create
+      addComments({ pid: this.pid, uid: this.uid }).then(res => {
 
+      })
+    }
   },
 }
 </script>

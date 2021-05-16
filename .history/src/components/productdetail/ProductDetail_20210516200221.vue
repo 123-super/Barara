@@ -144,7 +144,7 @@ export default {
       getComment(pid).then(res => {
         console.log(res)
         if (res.status == 200) {
-          this.comments = res.data.data
+          this.comments = res.data
         }
       })
     },
