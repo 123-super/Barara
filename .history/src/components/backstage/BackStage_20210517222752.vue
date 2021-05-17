@@ -98,15 +98,13 @@
             </el-table-column>
             <el-table-column prop="orderNum" label="订单编号" width="180">
             </el-table-column>
-            <el-table-column prop="receiverName" label="收货人" width="130">
-            </el-table-column>
-            <el-table-column prop="tel" label="收货人电话" width="130">
+            <el-table-column prop="receiverName" label="订单编号" width="180">
             </el-table-column>
             <el-table-column prop="createDate" label="生成日期" width="180">
             </el-table-column>
-            <el-table-column prop="price" label="价格" width="130">
+            <el-table-column prop="price" label="价格" width="180">
             </el-table-column>
-            <el-table-column prop="status" label="状态" width="130">
+            <el-table-column prop="status" label="状态" width="180">
             </el-table-column>
             <el-table-column label="操作">
               <template slot-scope="scope">
@@ -126,10 +124,7 @@
       <el-dialog title="修改用户" :visible.sync="dialogFormVisible5">
         <el-form :model="form5">
           <el-form-item label="收货人" :label-width="formLabelWidth">
-            <el-input
-              v-model="form5.receiverName"
-              autocomplete="off"
-            ></el-input>
+            <el-input v-model="form5.orderNum" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="收货人电话" :label-width="formLabelWidth">
             <el-input v-model="form5.tel" autocomplete="off"></el-input>
@@ -149,7 +144,7 @@
 <script>
 import { getCategory, searchC, addCategory, delCategoryById, updCategoryById } from "../../api/category"
 import { register, searchUser, delUserById, updUserById, getUser } from "../../api/user"
-import { getMyOrder, updOrderById } from "../../api/order"
+import { getMyOrder } from "../../api/order"
 export default {
   data() {
     return {
