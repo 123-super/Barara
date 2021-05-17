@@ -4,7 +4,7 @@
     <div class="container">
       <div class="detail">
         <div class="detail-leftpic">
-          <img src="../../../static/img/testImg/detail1.jpg" alt="商品图片" />
+          <img :src="'/api/images/productSingle/' + pid + '.jpg'" alt="商品图片" />
         </div>
         <div class="detail-rightinfo">
           <h2 class="dtitle">{{ productitems[0].name }}</h2>
@@ -75,11 +75,14 @@
                     </li>
                   </ul>
                 </div>
-                <div class="detailpage-sr">
-                  <img
+                <div v-if="productDetailImg.length === 0" class="detailpage-sr">
+                  <img 
                     src="../../../static/img/testImg/detail1.jpg"
                     alt="详情页图片"
                   />
+                </div>
+                <div v-else>
+                  <img v-for="item in productDetailImg" :key="item" :src="'/api' + item" />
                 </div>
               </div> </template
           ></el-tab-pane>
@@ -109,9 +112,10 @@
 </template>
 
 <script>
-import { getProductById, getPVByPidAndPtid, getPVByPId } from '../../api/product'
+import { getProductById, getPVByPidAndPtid, getPVByPId, getProductImg } from '../../api/product'
 import { getComment } from '../../api/order'
 export default {
+  name: 'ProductDetail',
   data() {
     return {
       index: 1,
@@ -126,7 +130,8 @@ export default {
       pnorms: [],
       norm: {},
       addtocart: [],
-      comments: []
+      comments: [],
+      productDetailImg: []
     }
   },
 
@@ -137,6 +142,7 @@ export default {
     this.getProduct(this.pid)
     this.getProductNorms(this.pid)
     this.getPV(this.pid)
+    this.getProductImg(this.pid)
     this.getComment(this.pid)
   },
   methods: {
@@ -161,6 +167,13 @@ export default {
     getPV(pid) {
       getPVByPId(pid).then((res) => {
         this.pnorms = res.data.data
+      })
+    },
+    getProductImg(pid) {
+      getProductImg(pid).then(resp => {
+        if (resp.status === 200) {
+          this.productDetailImg = resp.data.data
+        }
       })
     },
     // 加入购物车

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import store from "../store/index"
+import { Message } from 'element-ui'
 // import 'url-search-params-polyfill'
 const instance = axios.create({
     baseURL: '/api',
@@ -31,6 +32,14 @@ instance.interceptors.response.use(response => {
     } else {
         return Promise.reject(error)
     }
-})
+}, error => {
+    Message({
+        message: error.message,
+        type: 'error',
+        duration: 5 * 1000
+    })
+    return Promise.reject(error)
+  }
+)
 
 export default instance

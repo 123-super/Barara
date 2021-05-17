@@ -84,14 +84,19 @@
               :key="it2.id"
               style=""
             >
-              <a href="javascript:;" style="color: black">
+              <router-link
+                        :to="{
+                          path: '/ProductDetail',
+                          query: { id: it2.id, cid: it1.id },
+                        }"
+                        style="color: black">
                 <div class="cbrand">{{ it2.brand }}</div>
                 <div>{{ it2.name }}</div>
                 <div class="cprice">{{ it2.price }}</div>
                 <div>
-                  <img src="../../static/img/兰蔻.jpg" alt="商品图片" />
+                  <img :src="'/api/images/productSingle/' + it2.id + '.jpg'" alt="商品图片" />
                 </div>
-              </a>
+              </router-link>
             </li>
           </ul>
         </div>

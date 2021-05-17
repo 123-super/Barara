@@ -28,6 +28,13 @@ export function getPVByPId(pid) {
   })
 }
 
+export function getProductImg(pid) {
+    return request({
+        url: `/product/productImage/${pid}`,
+        method: 'get',
+    })
+}
+
 export function search(name) {
   return request({
     url: `/product/search?name=${name}`
