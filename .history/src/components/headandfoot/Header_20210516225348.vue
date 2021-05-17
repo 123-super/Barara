@@ -121,7 +121,7 @@ export default {
 }
 .topbar {
   background-color: #333333;
-  /* position: fixed; */
+  position: fixed;
   /* border: 1px solid black; */
 }
 .topbar a {

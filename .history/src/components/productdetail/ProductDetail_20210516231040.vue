@@ -142,7 +142,7 @@ export default {
   methods: {
     getComment(pid) {
       getComment(pid).then(res => {
-        // console.log(res)
+        console.log(res)
         if (res.status == 200) {
           this.comments = res.data.data
         }
@@ -171,7 +171,6 @@ export default {
         this.$set(good, 'count', this.index)
         this.$store.commit('addToShopCart', good)
         console.log(good)
-        console.log(this.$store.state.shopcart)
         console.log("++++")
       }
     },

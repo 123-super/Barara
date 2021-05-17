@@ -171,7 +171,6 @@ export default {
         this.$set(good, 'count', this.index)
         this.$store.commit('addToShopCart', good)
         console.log(good)
-        console.log(this.$store.state.shopcart)
         console.log("++++")
       }
     },

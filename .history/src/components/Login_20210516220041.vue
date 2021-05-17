@@ -59,7 +59,7 @@
         </div>
       </div>
     </div>
-    <Footer />
+    <!-- <Footer /> -->
   </div>
 </template>
 <script>
@@ -81,14 +81,17 @@ export default {
     loginClick() {
       let { username, password } = this.user;
       login({ username, password }).then((resp) => {
-        if (resp.data.status === 200) {
-          sessionStorage.setItem('user', JSON.stringify(resp.data.obj))
-          console.log(sessionStorage.getItem('user'))
+        if (resp.status === 200) {
+          //   console.log(resp)
+          //   sessionStorage.setItem('user', JSON.stringify(resp.obj))
+          //   console.log(sessionStorage.getItem('user'))
+          this.$store.commit('savetoken', resp.data.data.token)
+          this.$store.commit('saveUser', resp.data.data.username)
+          console.log(resp.data.data)
           this.$router.push("/home")
         } else {
           this.$message.error('用户或密码错误！')
         }
-        console.log(sessionStorage.getItem())
       });
     },
     register() {

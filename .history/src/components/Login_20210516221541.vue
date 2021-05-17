@@ -46,9 +46,7 @@
             </div>
             <div class="thirdlogin">
               <div class="thirdaccount">
-                <a class="iconfont a">&#xe6b9;</a>
-                <a class="iconfont a">&#xe630;</a>
-                <a class="iconfont a">&#xe618;</a>
+                <a href="">管理员登录</a>
               </div>
               <div class="register">
                 <span class="grey">还没有账号？</span>
@@ -59,7 +57,7 @@
         </div>
       </div>
     </div>
-    <Footer />
+    <!-- <Footer /> -->
   </div>
 </template>
 <script>
@@ -82,9 +80,12 @@ export default {
       let { username, password } = this.user;
       login({ username, password }).then((resp) => {
         if (resp.status === 200) {
-          sessionStorage.setItem('user', JSON.stringify(resp.obj))
-          console.log(sessionStorage.getItem('user'))
-          console.log(this.$store.state.token)
+          //   console.log(resp)
+          //   sessionStorage.setItem('user', JSON.stringify(resp.obj))
+          //   console.log(sessionStorage.getItem('user'))
+          this.$store.commit('savetoken', resp.data.data.token)
+          this.$store.commit('saveUser', resp.data.data.username)
+          console.log(resp.data.data)
           this.$router.push("/home")
         } else {
           this.$message.error('用户或密码错误！')

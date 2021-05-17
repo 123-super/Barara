@@ -46,9 +46,7 @@
             </div>
             <div class="thirdlogin">
               <div class="thirdaccount">
-                <a class="iconfont a">&#xe6b9;</a>
-                <a class="iconfont a">&#xe630;</a>
-                <a class="iconfont a">&#xe618;</a>
+                <a href="">管理员登录</a>
               </div>
               <div class="register">
                 <span class="grey">还没有账号？</span>
@@ -59,7 +57,7 @@
         </div>
       </div>
     </div>
-    <Footer />
+    <!-- <Footer /> -->
   </div>
 </template>
 <script>

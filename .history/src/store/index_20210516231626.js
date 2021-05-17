@@ -14,8 +14,8 @@ export default new Vuex.Store({
     getters: {},
     mutations: {
         addToShopCart(state, good) {
-            // state.shopcart.push(good)
-            if (state.shopcart.length !== 0) {
+            state.shopcart.push(good)
+            if (state.shopcart) {
                 state.shopcart.forEach((item) => {
                     if (item.id == good.id) {
                         item.count++

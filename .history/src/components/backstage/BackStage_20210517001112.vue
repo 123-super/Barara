@@ -225,15 +225,15 @@ export default {
     getCategory() {
       getCategory().then((res) => {
         if (res.status == 200) {
-          this.tableData = res.data
+          this.tableData = res.data.data
         }
       })
     },
     searchName(cateName) {
       searchC(cateName).then((res) => {
         if (res.status == 200) {
-          console.log(res.data)
-          this.tableData = res.data
+          //   console.log(res.data)
+          this.tableData = res.data.data
         }
       })
     },
@@ -264,16 +264,16 @@ export default {
     getAllUser() {
       getUser().then((res) => {
         if (res.status == 200) {
-          this.tableData1 = res.data
-          console.log(this.tableData1)
+          this.tableData1 = Array.of(res.data)
+          //   console.log(this.tableData1)
         }
       })
     },
     searchName(cateName) {
       searchC(cateName).then((res) => {
         if (res.status == 200) {
-          console.log(res.data)
-          this.tableData = res.data
+          //   console.log(res.data)
+          this.tableData = res.data.data
         }
       })
     },

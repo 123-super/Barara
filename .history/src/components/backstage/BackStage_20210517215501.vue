@@ -121,11 +121,17 @@
       <!-- 修改订单 -->
       <el-dialog title="修改用户" :visible.sync="dialogFormVisible5">
         <el-form :model="form5">
-          <el-form-item label="收货人" :label-width="formLabelWidth">
+          <el-form-item label="商品名称" :label-width="formLabelWidth">
+            <el-input v-model="form5.name" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="订单编号" :label-width="formLabelWidth">
             <el-input v-model="form5.orderNum" autocomplete="off"></el-input>
           </el-form-item>
-          <el-form-item label="收货人电话" :label-width="formLabelWidth">
-            <el-input v-model="form5.tel" autocomplete="off"></el-input>
+          <el-form-item label="创建日期" :label-width="formLabelWidth">
+            <el-input v-model="form5.createDate" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="价格" :label-width="formLabelWidth">
+            <el-input v-model="form5.price" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="状态" :label-width="formLabelWidth">
             <el-input v-model="form5.status" autocomplete="off"></el-input>
@@ -136,7 +142,79 @@
           <el-button type="primary" @click="updOById(form5)">确 定</el-button>
         </div>
       </el-dialog>
+      <el-tab-pane label="分类管理" name="third">
+        <div class="container">
+          <el-form :inline="true">
+            <el-form-item label="分类名称" class="label">
+              <el-input
+                v-model="cateName"
+                placeholder="请输入分类名称"
+              ></el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary" @click="searchName(cateName)"
+                >查询</el-button
+              >
+            </el-form-item>
+            <el-button type="success" @click="dialogFormVisible = true"
+              >添加</el-button
+            >
+          </el-form>
+          <el-table :data="tableData" border>
+            <el-table-column prop="id" label="分类id" width="180">
+            </el-table-column>
+            <el-table-column prop="name" label="分类名称" width="180">
+            </el-table-column>
+            <el-table-column label="属性管理" width="180">
+              <template><i class="iconfont">&#xe8f5;</i></template>
+            </el-table-column>
+            <el-table-column label="产品管理" width="180">
+              <template><i class="iconfont">&#xe607;</i></template>
+            </el-table-column>
+            <el-table-column label="操作">
+              <template slot-scope="scope">
+                <el-button
+                  @click="fillupdateCate(scope.row.id)"
+                  type="text"
+                  size="small"
+                  >编辑</el-button
+                >
+                <el-button
+                  type="text"
+                  size="small"
+                  @click="deleteCate(scope.row.id)"
+                  >删除</el-button
+                >
+              </template>
+            </el-table-column>
+          </el-table>
+        </div></el-tab-pane
+      >
     </el-tabs>
+    <!-- 增加分类 -->
+    <el-dialog title="增加分类" :visible.sync="dialogFormVisible">
+      <el-form :model="form">
+        <el-form-item label="分类名称" :label-width="formLabelWidth">
+          <el-input v-model="form.name" autocomplete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="addCate(form)">确 定</el-button>
+      </div>
+    </el-dialog>
+    <!-- 修改分类 -->
+    <el-dialog title="修改分类" :visible.sync="dialogFormVisible1">
+      <el-form :model="form1">
+        <el-form-item label="分类名称" :label-width="formLabelWidth">
+          <el-input v-model="form1.name" autocomplete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible1 = false">取 消</el-button>
+        <el-button type="primary" @click="updCateById(form1)">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -159,17 +237,16 @@ export default {
       dialogFormVisible1: false,
       dialogFormVisible3: false,
       dialogFormVisible4: false,
-      dialogFormVisible5: false,
       formLabelWidth: '220px',
       form: {},
       form1: {},
       form3: {},
       form4: {},
-      form5: {},
+
     }
   },
   created() {
-    // this.getCategory()
+    this.getCategory()
     this.getAllUser()
     this.getMyOrders()
   },
@@ -179,6 +256,15 @@ export default {
         if (res.status == 200) {
           this.tableData2 = res.data.data
           console.log(res.data.data)
+        }
+      })
+    },
+
+    searchName(cateName) {
+      searchC(cateName).then((res) => {
+        if (res.status == 200) {
+          //   console.log(res.data)
+          this.tableData = res.data.data
         }
       })
     },
@@ -242,7 +328,6 @@ export default {
     fillupdateorder(id) {
       this.dialogFormVisible5 = true
       this.form5 = { ...(this.tableData2.filter((item) => { return item.id == id })) }[0]
-      console.log(this.form5)
     },
     fillupdateCate(id) {
       this.dialogFormVisible1 = true

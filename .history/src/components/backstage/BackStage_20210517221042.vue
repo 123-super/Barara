@@ -159,13 +159,12 @@ export default {
       dialogFormVisible1: false,
       dialogFormVisible3: false,
       dialogFormVisible4: false,
-      dialogFormVisible5: false,
       formLabelWidth: '220px',
       form: {},
       form1: {},
       form3: {},
       form4: {},
-      form5: {},
+
     }
   },
   created() {
@@ -179,6 +178,15 @@ export default {
         if (res.status == 200) {
           this.tableData2 = res.data.data
           console.log(res.data.data)
+        }
+      })
+    },
+
+    searchName(cateName) {
+      searchC(cateName).then((res) => {
+        if (res.status == 200) {
+          //   console.log(res.data)
+          this.tableData = res.data.data
         }
       })
     },

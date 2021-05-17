@@ -16,11 +16,9 @@
           <span>|</span>
         </div>
         <div class="topbar-info">
-          <a
-            href="javascript:;"
-            style="color: rgb(212, 40, 38)"
-            @click="login()"
-            >{{ this.uState }}</a
+          <a href="" style="color: rgb(212, 40, 38)" @click="login()">{{
+            this.uState
+          }}</a
           ><span>|</span> <a href="javascript:;" @click="register()">免费注册</a
           ><span>|</span>
           <a href="">消息通知</a>
@@ -121,7 +119,6 @@ export default {
 }
 .topbar {
   background-color: #333333;
-  /* position: fixed; */
   /* border: 1px solid black; */
 }
 .topbar a {

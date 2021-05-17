@@ -98,26 +98,6 @@
       </div>
     </div>
     <div class="toolbar" id="toolbar">
-      <a href="" class="items" id="items1">
-        <div class="icon"><i class="iconfont">&#xe632;</i></div>
-        <span class="text">手机APP</span>
-        <div class="popcontent">
-          <img src="../../static/img/phone2wm.png" alt="" />
-          <span class="desc">扫码领取新人百元礼包</span>
-        </div>
-      </a>
-      <a href="" class="items">
-        <div class="icon"><i class="iconfont">&#xe63a;</i></div>
-        <span class="text">个人中心</span>
-      </a>
-      <a href="" class="items">
-        <div class="icon"><i class="iconfont">&#xe629;</i></div>
-        <span class="text">售后服务</span>
-      </a>
-      <a href="" class="items">
-        <div class="icon"><i class="iconfont">&#xe88d;</i></div>
-        <span class="text">人工客服</span>
-      </a>
       <a href="" class="items">
         <div class="icon"><i class="iconfont">&#xe607;</i></div>
         <span class="text">购物车</span>
@@ -158,7 +138,7 @@ export default {
     getCg() {
       getCategory().then((res) => {
         if (res.status == 200) {
-          this.listdata = res.obj
+          this.listdata = res.data.data
         }
         else {
           Toast("加载失败");
@@ -168,9 +148,9 @@ export default {
     getPC() {
       for (var i = 2; i < 11; i++) {
         getProductByCid(i).then((res) => {
-          console.log(res);
+          //   console.log(res);
           if (res.status == 200) {
-            this.productlist.push(res.obj)
+            this.productlist.push(res.data.data)
           }
           else {
             Toast("加载失败");
@@ -182,7 +162,7 @@ export default {
       for (var i = 2; i < 11; i++)
         getProductByCidlimit(i).then((res) => {
           if (res.status == 200) {
-            this.clist.push(res.obj)  //首页商品分类推荐
+            this.clist.push(res.data.data)  //首页商品分类推荐
           }
           //   console.log(res.obj)
         })

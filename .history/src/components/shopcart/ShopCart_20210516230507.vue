@@ -128,7 +128,7 @@ export default {
   created() {
     this.shopcarts = this.$store.state.shopcart
 
-    console.log(this.$store.state.shopcart)
+    console.log(this.shopcarts)
     // console.log(this.shopcarts.price * this.shopcarts.count)
   }
 }
