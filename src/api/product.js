@@ -1,5 +1,13 @@
 import request from '@/api/request'
 
+export function listProduct(data) {
+  return request({
+    url: `/product/listProduct`,
+    method: 'get',
+    params: data
+  })
+}
+
 export function getProductByCid(cid) {
   return request({
     url: `/category/getProductByCid?cid=${cid}`,
@@ -38,5 +46,28 @@ export function getProductImg(pid) {
 export function search(name) {
   return request({
     url: `/product/search?name=${name}`
+  })
+}
+
+export function addProduct(data) {
+  return request({
+    url: `/product/add`,
+    method: 'post',
+    data
+  })
+}
+
+export function updateProduct(data) {
+  return request({
+    url: `/product/put`,
+    method: 'post',
+    data
+  })
+}
+
+export function delProduct(id) {
+  return request({
+    url: `/product/delete/${id}`,
+    method: 'post'
   })
 }

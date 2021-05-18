@@ -34,6 +34,12 @@ Vue.prototype.msgInfo = function (msg) {
     this.$message.info(msg)
 }
 
+Vue.prototype.resetForm = function (refName) {
+	if (this.$refs[refName]) {
+		this.$refs[refName].resetFields()
+	}
+}
+
 /* eslint-disable no-new */
 new Vue({
     el: '#app',
