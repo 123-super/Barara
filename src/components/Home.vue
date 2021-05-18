@@ -117,7 +117,7 @@
 </template>
 <script>
 import { lunbo } from '../../static/js/firstpagelunbo'
-import { getCategory, getProductByCidlimit } from '../api/category'
+import { listCategory, getProductByCidlimit } from '../api/category'
 import { getProductByCid } from '../api/product'
 export default {
   data() {
@@ -141,7 +141,7 @@ export default {
   },
   methods: {
     getCg() {
-      getCategory().then((res) => {
+      listCategory().then((res) => {
         if (res.status == 200) {
           this.listdata = res.data.data
         }

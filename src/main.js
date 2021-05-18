@@ -24,6 +24,16 @@ Vue.prototype.$axios = Axios;
 // 跨域相关
 // Axios.defaults.baseURL = "/api"
 
+
+Vue.prototype.msgSuccess = function (msg) {
+    this.$message.success(msg)
+}
+
+
+Vue.prototype.msgInfo = function (msg) {
+    this.$message.info(msg)
+}
+
 /* eslint-disable no-new */
 new Vue({
     el: '#app',
