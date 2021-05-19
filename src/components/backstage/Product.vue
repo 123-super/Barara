@@ -24,13 +24,13 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="handleQuery">查询</el-button>
-        <el-button icon="el-icon-refresh" circle @click="resetQuery" />
+        <el-button type="success" @click="handleAdd">添加</el-button>
+        <!-- <el-button icon="el-icon-refresh" circle @click="resetQuery" /> -->
       </el-form-item>
     </el-form>
 
-    <el-row style="margin-bottom: 15px">
-      <el-button type="success" @click="handleAdd">添加</el-button>
-    </el-row>
+    <!-- <el-row style="margin-bottom: 15px">
+    </el-row> -->
 
     <el-table v-loading="loading" :data="tableData" border style="width: 100%">
       <el-table-column prop="id" label="商品编号" />
@@ -65,21 +65,18 @@
         <template slot-scope="scope">
           <el-button
             type="text"
-            icon="el-icon-edit"
             size="small"
             @click="handleUpdate(scope.row)"
             >编辑</el-button
           >
           <el-button
             type="text"
-            icon="el-icon-picture-outline"
             size="small"
             @click="handleUpload(scope.row)"
             >上传图片</el-button
           >
           <el-button
             type="text"
-            icon="el-icon-delete"
             size="small"
             @click="handleDelete(scope.row)"
             >删除</el-button
@@ -160,7 +157,7 @@ export default {
         name: { required: true, message: '商品名不可为空', trigger: 'blur' },
         price: [
           { required: true, message: '价格不可为空', trigger: 'blur' },
-          { type: 'number', message: '价格必须为数字值', trigger: 'blur'}
+          { type: 'number', message: '价格必须为数字值', trigger: 'blur' }
         ],
         stocknum: { required: true, message: '库存不可为空', trigger: 'blur' },
         desc: { required: true, message: '详情不可为空', trigger: 'blur' }

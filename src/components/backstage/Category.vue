@@ -1,6 +1,11 @@
 <template>
   <div class="container">
-    <el-form :model="queryParams" ref="queryForm" @submit.native.prevent :inline="true">
+    <el-form
+      :model="queryParams"
+      ref="queryForm"
+      @submit.native.prevent
+      :inline="true"
+    >
       <el-form-item label="分类名称" prop="name" class="label">
         <el-input
           v-model="queryParams.name"
@@ -10,13 +15,10 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="handleQuery">查询</el-button>
-        <el-button icon="el-icon-refresh" circle @click="resetQuery" />
+        <el-button type="success" @click="handleAdd">添加</el-button>
+        <!-- <el-button icon="el-icon-refresh" circle @click="resetQuery" /> -->
       </el-form-item>
     </el-form>
-
-    <el-row style="margin-bottom: 15px">
-      <el-button type="success" @click="handleAdd">添加</el-button>
-    </el-row>
 
     <el-table v-loading="loading" :data="tableData" border style="width: 100%">
       <el-table-column prop="id" label="分类编号" />
@@ -32,14 +34,12 @@
         <template slot-scope="scope">
           <el-button
             type="text"
-            icon="el-icon-edit"
             size="small"
             @click="handleUpdate(scope.row)"
             >编辑</el-button
           >
           <el-button
             type="text"
-            icon="el-icon-delete"
             size="small"
             @click="handleDelete(scope.row)"
             >删除</el-button
