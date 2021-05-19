@@ -33,8 +33,9 @@ instance.interceptors.response.use(response => {
         return Promise.reject(error)
     }
 }, error => {
+    // console.log(error.message)
     Message({
-        message: error.message,
+        message: '网络异常，请稍后再试！',
         type: 'error',
         duration: 5 * 1000
     })

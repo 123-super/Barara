@@ -1,8 +1,17 @@
 import request from '@/api/request'
-export function getCategory() {
+
+export function listCategory(data) {
     return request({
         url: `/category/getCategory`,
         method: 'get',
+        params: data
+    })
+}
+
+export function getCategory(cid) {
+    return request({
+        url: `/category/getCategoryById?cid=${cid}`,
+        method: 'get'
     })
 }
 
@@ -13,21 +22,14 @@ export function getProductByCidlimit(cid) {
     })
 }
 
-export function searchC(search) {
-    return request({
-        url: `/category/search?search=${search}`,
-        method: 'get',
-    })
-}
-
-export function delCategoryById(id) {
+export function delCategory(id) {
     return request({
         url: `/category/delCategoryById?id=${id}`,
         method: 'post',
     })
 }
 
-export function updCategoryById(param) {
+export function updateCategory(param) {
     return request({
         url: `/category/updCategoryById`,
         method: 'post',

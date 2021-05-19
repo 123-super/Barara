@@ -17,13 +17,37 @@ Vue.use(VueRouter)
 
 
 const router = new VueRouter({
+  mode: 'history', // 去掉url中的#
   routes: [{
       path: '/',
       redirect: '/home'
     },
     {
       path: '/backstage',
-      component: BackStage
+      component: BackStage,
+      redirect: '/backstage/first',
+      children: [
+        {
+          path: 'first',
+          component: () => import('@/components/backstage/User'),
+          meta: { active: 'first' }
+        },
+        {
+          path: 'second',
+          component: () => import('@/components/backstage/Order'),
+          meta: { active: 'second' }
+        },
+        {
+          path: 'third',
+          component: () => import('@/components/backstage/Category'),
+          meta: { active: 'third' }
+        },
+        {
+          path: 'product/:cId(\\d+)',
+          component: () => import('@/components/backstage/Product'),
+          meta: { active: 'third' }
+        }
+      ]
     },
     {
       path: '/login',
