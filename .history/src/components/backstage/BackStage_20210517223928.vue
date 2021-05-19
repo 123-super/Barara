@@ -100,13 +100,13 @@
             </el-table-column>
             <el-table-column prop="receiverName" label="收货人" width="130">
             </el-table-column>
-            <el-table-column prop="tel" label="收货人电话" width="130">
+            <el-table-column prop="tel" label="收货人电话" width="180">
             </el-table-column>
             <el-table-column prop="createDate" label="生成日期" width="180">
             </el-table-column>
-            <el-table-column prop="price" label="价格" width="130">
+            <el-table-column prop="price" label="价格" width="180">
             </el-table-column>
-            <el-table-column prop="status" label="状态" width="130">
+            <el-table-column prop="status" label="状态" width="180">
             </el-table-column>
             <el-table-column label="操作">
               <template slot-scope="scope">
@@ -126,10 +126,7 @@
       <el-dialog title="修改用户" :visible.sync="dialogFormVisible5">
         <el-form :model="form5">
           <el-form-item label="收货人" :label-width="formLabelWidth">
-            <el-input
-              v-model="form5.receiverName"
-              autocomplete="off"
-            ></el-input>
+            <el-input v-model="form5.orderNum" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="收货人电话" :label-width="formLabelWidth">
             <el-input v-model="form5.tel" autocomplete="off"></el-input>
@@ -149,34 +146,117 @@
 <script>
 import { getCategory, searchC, addCategory, delCategoryById, updCategoryById } from "../../api/category"
 import { register, searchUser, delUserById, updUserById, getUser } from "../../api/user"
-import { getMyOrder, updOrderById } from "../../api/order"
+import { getMyOrder } from "../../api/order"
 export default {
   data() {
     return {
-      activeName: 'first',
+      tableData: [],
+      tableData2: [],
       tableData3: [],
       tableData4: [],
-      cateName: "",
+      userName: '',
+      cateName: '',
+      orderName: '',
+      activeName: 'second',
+      tableData1: [],
       dialogFormVisible: false,
       dialogFormVisible1: false,
+      dialogFormVisible3: false,
+      dialogFormVisible4: false,
+      dialogFormVisible5: false,
+      formLabelWidth: '220px',
       form: {},
-      form1: {}
-    };
-  },
-  watch: {
-    '$route': {
-      handler: function(route) {
-        if (route.meta && route.meta.active) this.activeName = route.meta.active
-      },
-      immediate: true
+      form1: {},
+      form3: {},
+      form4: {},
+      form5: {},
     }
+  },
+  created() {
+    // this.getCategory()
+    this.getAllUser()
+    this.getMyOrders()
   },
   methods: {
-    handleTabsClick(tab) {
-      this.$router.replace(`/backstage/${tab.name}`);
-    }
+    getMyOrders() {
+      getMyOrder().then((res) => {
+        if (res.status == 200) {
+          this.tableData2 = res.data.data
+          console.log(res.data.data)
+        }
+      })
+    },
+
+
+    // 用户的方法模块
+    getAllUser() {
+      getUser().then((res) => {
+        if (res.status == 200) {
+          this.tableData1 = res.data.data
+          //   Array.of(res.data)
+          //   console.log(this.tableData1)
+        }
+      })
+    },
+    searchName(cateName) {
+      searchC(cateName).then((res) => {
+        if (res.status == 200) {
+          //   console.log(res.data)
+          this.tableData = res.data.data
+        }
+      })
+    },
+    addUser(param) {
+      register(param).then((res) => {
+        if (res.status == 200) {
+          this.dialogFormVisible3 = false
+          this.getAllUser()
+          this.$message.success("添加用户成功!");
+        }
+      })
+    },
+    updUById(param) {
+      updUserById(param).then((res) => {
+        if (res.status == 200) {
+          this.dialogFormVisible4 = false
+          this.getAllUser()
+          this.$message.success("修改用户成功!");
+        }
+      })
+    },
+    updOById(param) {
+      updOrderById(param).then((res) => {
+        if (res.status == 200) {
+          this.dialogFormVisible5 = false
+          this.getMyOrders()
+          this.$message.success("修改订单成功!");
+        }
+      })
+    },
+    deleteU(id) {
+      delUserById(id).then((res) => {
+        this.getAllUser()
+        this.$message.success("删除用户成功!");
+      })
+    },
+    fillupdateuser(id) {
+      this.dialogFormVisible4 = true
+      this.form4 = { ...(this.tableData1.filter((item) => { return item.id == id })) }[0]
+    },
+    fillupdateorder(id) {
+      this.dialogFormVisible5 = true
+      this.form5 = { ...(this.tableData2.filter((item) => { return item.id == id })) }[0]
+      console.log(this.form5)
+    },
+    fillupdateCate(id) {
+      this.dialogFormVisible1 = true
+      this.form1 = { ...(this.tableData.filter((item) => { return item.id == id })) }[0]
+      console.log(id)
+      console.log(this.form1)
+    },
+    handleClick(a) { },
   }
-};
+}
 </script>
 <style >
 .back {
@@ -209,10 +289,6 @@ export default {
 .is-active {
   background: black !important;
   border: none !important;
-}
-.el-tabs--border-card {
-  box-shadow: none;
-  border: none;
 }
 
 /* 表格样式 */
